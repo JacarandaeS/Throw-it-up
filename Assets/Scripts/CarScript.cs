@@ -1,27 +1,30 @@
 using UnityEngine;
 
-public class CarScript : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+public class CarScript : MonoBehaviour {
+    [SerializeField] bool isGoingAway;
     private float movementSpeed = .3f;
     private float backBorder = -71f;
+    private float frontBorder = 160;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         Vector3 pos = transform.position;
-        if (pos.z < backBorder) {
-            Destroy(gameObject);
+        if (isGoingAway) {
+            if (pos.z > frontBorder) {
+                Destroy(gameObject);
+            }
+            pos.z += movementSpeed;
+            transform.position = pos;
         }
 
-        pos.z -= movementSpeed;
+        if (!isGoingAway) {
+            if (pos.z < backBorder) {
+                Destroy(gameObject);
+            }
+
+            pos.z -= movementSpeed;
             transform.position = pos;
-        Debug.Log(pos);
-        
+           // Debug.Log(pos);
+
+        }
     }
 }
