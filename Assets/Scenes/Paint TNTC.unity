@@ -952,7 +952,7 @@ MonoBehaviour:
   biseladoCap: {fileID: 2116509992}
   mixerCap: {fileID: 636598188}
   crosshairCanvas: {fileID: 1541971107}
-  distance: 0.8
+  distance: 0.4
   raycastEnabled: 1
   targetWorldPosition: {x: 0, y: 0, z: 0}
   aerosoles: []
@@ -7335,7 +7335,7 @@ Transform:
   m_GameObject: {fileID: 739710870}
   serializedVersion: 2
   m_LocalRotation: {x: -0.022810444, y: -0.002412866, z: -0.00071861525, w: -0.9997367}
-  m_LocalPosition: {x: -133.8, y: 76.5, z: -145.6}
+  m_LocalPosition: {x: -38.3, y: 76.7, z: -146.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7355,6 +7355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontBorder: 2
   backBorder: -16
+  leftBorder: -100
+  rightBorder: 95
 --- !u!65 &739710874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9546,7 +9548,7 @@ Transform:
   m_GameObject: {fileID: 960427822}
   serializedVersion: 2
   m_LocalRotation: {x: -0.022810265, y: -0.002412866, z: -0.00071860966, w: -0.9997367}
-  m_LocalPosition: {x: -133.8, y: 76.5, z: -145.59999}
+  m_LocalPosition: {x: -38.3, y: 76.7, z: -146.19998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -3,6 +3,8 @@ using UnityEngine;
 public class CameraHandlerReplaceble : MonoBehaviour {
     [SerializeField] private float frontBorder = 2.5f;
     [SerializeField] private float backBorder = -16.0f;
+    [SerializeField] private float leftBorder = 0;
+    [SerializeField] private float rightBorder = 0;
     void Update() {
 
         float movementSpeed = GameManager.instance.GetCameraSpeed(); // ? Use camera speed from GameManager
@@ -10,12 +12,18 @@ public class CameraHandlerReplaceble : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.D)) {
             Vector3 pos = transform.position;
+            if(pos.x > rightBorder) {
+                return;
+            }
             pos.x += movementSpeed;
             transform.position = pos;
         }
 
         if (Input.GetKey(KeyCode.A)) {
             Vector3 pos = transform.position;
+            if(pos.x < leftBorder) {
+                return;
+            }
             pos.x -= movementSpeed;
             transform.position = pos;
         }
