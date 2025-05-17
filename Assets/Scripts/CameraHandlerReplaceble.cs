@@ -1,11 +1,14 @@
 using UnityEngine;
 
 public class CameraHandlerReplaceble : MonoBehaviour {
+
+    //esto se tiene que llamar de otra forma, seria el desplazamiento en el modo sidescroll
+
     [SerializeField] private float frontBorder = 2.5f;
     [SerializeField] private float backBorder = -16.0f;
     [SerializeField] private float leftBorder = 0;
     [SerializeField] private float rightBorder = 0;
-    void Update() {
+    void FixedUpdate() {
 
         float movementSpeed = GameManager.instance.GetCameraSpeed(); // ? Use camera speed from GameManager
 

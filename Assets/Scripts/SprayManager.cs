@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SprayManager : MonoBehaviour {
@@ -95,6 +95,7 @@ public class SprayManager : MonoBehaviour {
 
         screenPosition = Input.mousePosition;
         screenPosition.z = Camera.main.WorldToScreenPoint(crosshairCanvas.transform.position - new Vector3(0, 0, distance)).z;
+        Debug.Log(Camera.main.name);
 
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
