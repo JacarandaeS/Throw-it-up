@@ -6165,7 +6165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerLimit: 30500
-  auto: {fileID: 6535186732917457143, guid: fb7c00ffe537cfd499d3a05bfcc0a4c1, type: 3}
+  auto: {fileID: 2307393079019681964, guid: 896b659ad4559be479cdbf10a4d7696e, type: 3}
 --- !u!4 &551487633
 Transform:
   m_ObjectHideFlags: 0
@@ -6175,7 +6175,7 @@ Transform:
   m_GameObject: {fileID: 551487631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 294.8, y: 36.2, z: 171.79}
+  m_LocalPosition: {x: 294.8, y: 41.3, z: 171.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
