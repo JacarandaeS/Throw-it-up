@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4839200210604119890}
   - component: {fileID: 855265132347253047}
   - component: {fileID: 4876066185159683132}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FatCap.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2784373817317196632}
   - component: {fileID: 3215930531043860035}
-  m_Layer: 0
+  - component: {fileID: -6879705841280050290}
+  m_Layer: 7
   m_Name: LoopFinal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,6 +150,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6879705841280050290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2760909627313432399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea228bb66c657f45bdfdab19349f709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 255, g: 255, b: 255, a: 1}
 --- !u!1 &4066714971800388563
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,8 +174,8 @@ GameObject:
   - component: {fileID: 447152992584208772}
   - component: {fileID: 6154342908977491297}
   - component: {fileID: 7007734009858090345}
-  - component: {fileID: 6972617393813251153}
-  m_Layer: 0
+  - component: {fileID: 3197039243699492023}
+  m_Layer: 7
   m_Name: Loop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,8 +250,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6972617393813251153
-MeshCollider:
+--- !u!65 &3197039243699492023
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -254,10 +268,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3493291955490051683, guid: 1d5205288bac18545adb2076bdd877c8, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.7, y: 1.7, z: 5.1306195}
+  m_Center: {x: 0.00000023841858, y: 2.1328005e-14, z: 1.5008253}
 --- !u!1 &7654731748648487738
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +282,7 @@ GameObject:
   - component: {fileID: 3734102550959196350}
   - component: {fileID: 6506540989770526758}
   - component: {fileID: 4155117052277102338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ColorRing.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}

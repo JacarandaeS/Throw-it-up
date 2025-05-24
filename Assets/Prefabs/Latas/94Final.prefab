@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 812399808323849541}
   - component: {fileID: 4316923831419374704}
   - component: {fileID: 8979510591964339389}
-  - component: {fileID: 8198163480236540958}
-  m_Layer: 0
+  - component: {fileID: 2923435795842378095}
+  m_Layer: 7
   m_Name: 94Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8198163480236540958
-MeshCollider:
+--- !u!65 &2923435795842378095
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,10 +105,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4874458839349528245, guid: 1d5205288bac18545adb2076bdd877c8, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.38, y: 1.34, z: 4.2511106}
+  m_Center: {x: 0, y: 0, z: 1.04}
 --- !u!1 &1701596437189246532
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +119,7 @@ GameObject:
   - component: {fileID: 1069145067695007950}
   - component: {fileID: 4068292347856633089}
   - component: {fileID: 5794854156018213884}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 94ColorRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +205,7 @@ GameObject:
   - component: {fileID: 2666111228258963359}
   - component: {fileID: 2641497872492140043}
   - component: {fileID: 507820713694523894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FatCap.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +291,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6604390306670211836}
   - component: {fileID: 3905091542503826361}
-  m_Layer: 0
+  - component: {fileID: 3620692199721324663}
+  m_Layer: 7
   m_Name: 94Final
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7504131861736555615}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 12
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0.5, z: 0}
@@ -342,5 +342,18 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 0
+--- !u!114 &3620692199721324663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504131861736555615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea228bb66c657f45bdfdab19349f709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 255, g: 255, b: 255, a: 1}

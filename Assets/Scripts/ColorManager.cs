@@ -15,7 +15,14 @@ public class ColorManager : MonoBehaviour {
         new Color(1f, 0.5f, 0f), // orange
     };
 
+
+
     [HideInInspector] public Color currentColor;
+
+    public List<Color> HandPickedpalette = new List<Color>() {
+       
+    };
+
 
     int currentIndex = 0;
 

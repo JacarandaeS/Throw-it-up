@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2186858167267943206}
   - component: {fileID: 187771688087583228}
-  m_Layer: 0
+  - component: {fileID: 5839946927048339442}
+  m_Layer: 7
   m_Name: KWTFinal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.10324873, z: -0, w: 0.99465555}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.20000003, y: 0.2, z: 0.20000003}
+  m_LocalScale: {x: 0.20000003, y: 0.16, z: 0.20000003}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1097823348608914054}
@@ -62,6 +63,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5839946927048339442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048601630416716730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea228bb66c657f45bdfdab19349f709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 255, g: 255, b: 255, a: 1}
 --- !u!1 &5228700828335329953
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,8 +87,8 @@ GameObject:
   - component: {fileID: 1097823348608914054}
   - component: {fileID: 1707795822088463821}
   - component: {fileID: 1238475219344322791}
-  - component: {fileID: 2219565858696149714}
-  m_Layer: 0
+  - component: {fileID: 6951539452910907027}
+  m_Layer: 7
   m_Name: Can.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,8 +163,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2219565858696149714
-MeshCollider:
+--- !u!65 &6951539452910907027
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -167,10 +181,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2782066489520661347, guid: 1d5205288bac18545adb2076bdd877c8, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.5010983, y: 1.5010989, z: 5.657871}
+  m_Center: {x: 0.060379863, y: 0.000000014080951, z: 1.7298356}
 --- !u!1 &5328591787978282945
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +195,7 @@ GameObject:
   - component: {fileID: 4864637537765845076}
   - component: {fileID: 5878104973744427256}
   - component: {fileID: 6231487393940414615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FatCap.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +282,7 @@ GameObject:
   - component: {fileID: 3659471255757779009}
   - component: {fileID: 1976054472265484737}
   - component: {fileID: 6227015131847429169}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ColorRing.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}

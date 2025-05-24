@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2327340813676064434}
   - component: {fileID: 400345397215121519}
-  - component: {fileID: 5185461469402814537}
   m_Layer: 0
   m_Name: KwtRayada
   m_TagString: Untagged
@@ -62,27 +61,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5185461469402814537
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5335984709514956605}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6395614591377337898
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +72,7 @@ GameObject:
   - component: {fileID: 3090405139819120519}
   - component: {fileID: 913720744714086188}
   - component: {fileID: 3196786338630232015}
+  - component: {fileID: 3934178605421537427}
   m_Layer: 0
   m_Name: KWTRayadoCan
   m_TagString: Untagged
@@ -169,6 +148,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3934178605421537427
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6395614591377337898}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6, y: 1.6, z: 6.061896}
+  m_Center: {x: 0, y: 0, z: 2.030948}
 --- !u!1 &7477017968128191365
 GameObject:
   m_ObjectHideFlags: 0

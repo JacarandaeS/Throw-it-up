@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7079421808087835068}
   - component: {fileID: 3140802887235654834}
   - component: {fileID: 5247428438472975291}
+  - component: {fileID: 6553856740581344488}
   m_Layer: 0
   m_Name: BaGraffCan
   m_TagString: Untagged
@@ -86,6 +87,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6553856740581344488
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3943885920386020118}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.062023, y: 2.0620239, z: 3.8851922}
+  m_Center: {x: 0.00000006089316, y: -0.0000002295951, z: 1.2570704}
 --- !u!1 &5372423775231633012
 GameObject:
   m_ObjectHideFlags: 0

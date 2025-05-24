@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8767257633405323371}
   - component: {fileID: 7333315781325096302}
   - component: {fileID: 6834974540604770561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ColorRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2687155369199077899}
   - component: {fileID: 6723634808693191669}
-  m_Layer: 0
+  - component: {fileID: -7157242941236565520}
+  m_Layer: 7
   m_Name: TekBondFinal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +149,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7157242941236565520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152121322944746644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea228bb66c657f45bdfdab19349f709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 255, g: 255, b: 255, a: 1}
 --- !u!1 &7584454889280340154
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +173,7 @@ GameObject:
   - component: {fileID: 3026236940626464841}
   - component: {fileID: 6826268925817724502}
   - component: {fileID: 1430104943745219636}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FatCap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,8 +260,8 @@ GameObject:
   - component: {fileID: 4404532048224077207}
   - component: {fileID: 5517513129895477919}
   - component: {fileID: 6606860631308937889}
-  - component: {fileID: 5949130067370153734}
-  m_Layer: 0
+  - component: {fileID: 7189164648616258952}
+  m_Layer: 7
   m_Name: Can.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,8 +336,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5949130067370153734
-MeshCollider:
+--- !u!65 &7189164648616258952
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -340,7 +354,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8141382301230914212, guid: 1d5205288bac18545adb2076bdd877c8, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.6, y: 1.28, z: 4.867952}
+  m_Center: {x: -1.9729955e-14, y: 0, z: 1.3883721}

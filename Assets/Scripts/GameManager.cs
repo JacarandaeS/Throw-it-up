@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         if (instance == null) {
             instance = this;
+            Cursor.visible = false;
         }
         else {
             Destroy(gameObject);
@@ -35,9 +36,26 @@ public class GameManager : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyUp(KeyCode.Escape)) {
+            if (isTurnedOn == false) {
             isTurnedOn = !isTurnedOn;
             optionScreen.SetActive(isTurnedOn);
             activeCans.SetActive(!isTurnedOn);
+                Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+                Cursor.visible = true;                  // Make it visible
+
+
+
+            }
+            else {
+                isTurnedOn = !isTurnedOn;
+                optionScreen.SetActive(isTurnedOn);
+                activeCans.SetActive(!isTurnedOn);
+                Cursor.lockState = CursorLockMode.None; // Lock the cursor (like in FPS)
+                Cursor.visible = false;                   // Hide it
+
+            }
+
+
         }
 
         // Update both speeds continuously

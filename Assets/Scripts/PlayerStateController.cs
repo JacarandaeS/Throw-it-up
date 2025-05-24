@@ -31,6 +31,7 @@ public class PlayerStateController : MonoBehaviour {
             if (isPainterActive) {
                 // Disable the painter
                 activePainter.SetActive(false);
+                CrosshairCanvas.SetActive(false);
                 isPainterActive = false;
 
                 if (mouseLook != null) {
@@ -43,6 +44,7 @@ public class PlayerStateController : MonoBehaviour {
                 // Only enable the painter if the photo camera is NOT active
                 if (!photocamera.activeSelf) {
                     activePainter.SetActive(true);
+                    CrosshairCanvas.SetActive(true);
                     isPainterActive = true;
 
                     if (mouseLook != null) {
