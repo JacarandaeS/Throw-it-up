@@ -4,13 +4,13 @@
     {
         _PainterColor ("Painter Color", Color) = (0, 0, 0, 0)
         _MainTex ("Main Texture", 2D) = "white" {}
+        [Enum(Main,0,Superior,1)] _MaskType ("Mask Type", Int) = 0
     }
 
     SubShader 
     {
         Tags { "RenderType" = "Opaque" }
 
-        // Don't cull, write depth or test Z-buffer
         Cull Off
         ZWrite Off
         ZTest Off
@@ -32,6 +32,7 @@
             float _Strength;
             float4 _PainterColor;
             float _PrepareUV;
+            int _MaskType; // 0 = Main, 1 = Superior
 
             struct appdata 
             {
@@ -46,7 +47,7 @@
                 float3 worldPos : TEXCOORD1;
             };
 
-            // Brush mask falloff
+            // Your original brush mask falloff - unchanged
             float mask(float3 position, float3 center, float radius, float hardness) 
             {
                 float dist = distance(center, position);
@@ -61,40 +62,42 @@
                 o.worldPos = world.xyz;
 
                 float4 clipPos;
-                clipPos.xy = (v.uv.xy * 2 - 1) * float2(1, _ProjectionParams.x); // aspect-correct
+                clipPos.xy = (v.uv.xy * 2 - 1) * float2(1, _ProjectionParams.x);
                 clipPos.z = 0;
                 clipPos.w = 1;
                 o.vertex = clipPos;
                 return o;
             }
 
-      fixed4 frag (v2f i) : SV_Target {
-    if (_PrepareUV > 0) {
-        return float4(0, 0, 1, 1); // UV visualization pass
-    }
+            fixed4 frag(v2f i) : SV_Target 
+            {
+                if (_PrepareUV > 0) {
+                    return float4(0, 0, 1, 1); // UV visualization pass
+                }
 
-    float4 baseColor = tex2D(_MainTex, i.uv);
-    
-    // 👇 Ensure baseColor has a minimum alpha, so we blend properly even on transparent
-    baseColor.a = max(baseColor.a, 0.001);
+                float4 baseColor = tex2D(_MainTex, i.uv);
+                baseColor.a = max(baseColor.a, 0.001);
 
-    float brushFalloff = mask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
-    float influence = saturate(brushFalloff * _Strength);
+                float brushFalloff = mask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
+                float influence = saturate(brushFalloff * _Strength);
 
-    if (influence < 0.001) discard;
+                if (influence < 0.001) discard;
 
-    // Optional: smoothen falloff for softness
-    influence = pow(influence, 0.5);
+                // Keep your original influence calculation
+                influence = pow(influence, 0.5);
 
-    // Blend paint over base color
-    float4 result = baseColor * (1 - influence) + _PainterColor * influence;
-
-    return result;
-}
-
+                // Dual-mask handling - main difference is here
+                if (_MaskType == 0) {
+                    // Main mask - standard blending
+                    return lerp(baseColor, _PainterColor, influence);
+                }
+                else {
+                    // Superior mask - binary output (painted or not)
+                    return influence > 0.5 ? _PainterColor : float4(0,0,0,0);
+                }
+            }
             ENDCG
         }
     }
-
     FallBack "Diffuse"
 }

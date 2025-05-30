@@ -29,7 +29,6 @@ public class HandleCameraLateral : MonoBehaviour
             }
             else {
                 pos.x -= movementSpeed;
-                Debug.Log(pos.x);
                 transform.position = pos;
             }
            

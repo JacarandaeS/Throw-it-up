@@ -34,7 +34,7 @@ public class MousePainter : MonoBehaviour {
                 }
                 else {
                     float dist = Vector3.Distance(lastPaintPos.Value, currentPos);
-                    float step = Mathf.Max(0.05f, radius * 0.5f); // Clamp minimum step size
+                    float step = Mathf.Max(0.05f, radius * 0.3f); // Clamp minimum step size
                     int steps = Mathf.Clamp(Mathf.CeilToInt(dist / step), 1, 100); // Limit to avoid too many calls
 
                     for (int i = 0; i <= steps; i++) {

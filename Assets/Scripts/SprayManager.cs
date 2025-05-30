@@ -95,8 +95,6 @@ public class SprayManager : MonoBehaviour {
 
         screenPosition = Input.mousePosition;
         screenPosition.z = Camera.main.WorldToScreenPoint(crosshairCanvas.transform.position - new Vector3(0, 0, distance)).z;
-        Debug.Log(Camera.main.name);
-
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
         targetWorldPosition = Vector3.Lerp(targetWorldPosition, mouseWorldPosition, Time.deltaTime * smoothSpeed);
