@@ -8,9 +8,10 @@ public class HandleChangeCamera : MonoBehaviour {
     public CinemachineCamera vcam1;
     public CinemachineCamera vcam2;
     [SerializeField] private GameObject activeCan;
-
+    [SerializeField] private GameObject secondCameraHolder;
     private bool isInsideTrigger = false;
     private bool isCam1Active = true;
+    private bool cameraholderActive = false;
 
     void Start() {
         if (vcam1 != null && vcam2 != null) {
@@ -37,12 +38,13 @@ public class HandleChangeCamera : MonoBehaviour {
         if (isInsideTrigger && Input.GetKeyDown(KeyCode.E)) {
             isCam1Active = !isCam1Active;
 
-            // Deactivate spray
             if (SprayManager.instance != null && SprayManager.instance.currentSpray != null) {
                 SprayManager.instance.currentSpray.SetActive(false);
             }
 
             // Change camera priority
+            //secondCameraHolder.SetActive(true);
+            
             vcam1.Priority = isCam1Active ? 10 : 0;
             vcam2.Priority = isCam1Active ? 0 : 10;
 

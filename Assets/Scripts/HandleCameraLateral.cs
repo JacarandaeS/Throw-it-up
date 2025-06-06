@@ -5,7 +5,8 @@ public class HandleCameraLateral : MonoBehaviour
 {
     [SerializeField] private float leftTop;
     [SerializeField] private float rightTop;
-    void Update()
+   
+    void FixedUpdate()
     {
         float movementSpeed = GameManager.instance.GetCameraSpeed(); // ? Use camera speed from GameManager
 

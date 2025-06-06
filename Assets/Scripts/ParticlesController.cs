@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,10 +10,7 @@ public class ParticlesController : MonoBehaviour {
     public float hardness = 1;
     public float size = 1;
 
-    [Header("Layer Settings")]
-    public bool paintOnSuperiorLayer = false;
-    public KeyCode layerToggleKey = KeyCode.L;
-    public float superiorLayerHardness = 0.9f;
+
 
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents;
@@ -31,16 +27,16 @@ public class ParticlesController : MonoBehaviour {
         if (p != null) {
             for (int i = 0; i < numCollisionEvents; i++) {
                 Vector3 pos = collisionEvents[i].intersection;
-                float currentHardness = paintOnSuperiorLayer ? superiorLayerHardness : hardness;
-                Debug.Log(pos);
+                //float currentHardness = PaintOnSuperiorLayer ? superiorLayerHardness : hardness;
+
                 PaintManager.instance.paint(
                     p,
                     pos,
                     radius: size,
-                    hardness: currentHardness,
+                    hardness: hardness,
                     strength: strength,
-                    color: paintColor,
-                    paintOnSuperior: paintOnSuperiorLayer
+                    color: paintColor
+                    //paintOnSuperior: PaintOnSuperiorLayer
                 );
             }
         }
@@ -48,11 +44,8 @@ public class ParticlesController : MonoBehaviour {
 
     void Update() {
         paintColor = ColorManager.instance.currentColor;
-
-        if (Input.GetKeyDown(layerToggleKey)) {
-            Debug.Log("se toco la tecla");
-            paintOnSuperiorLayer = !paintOnSuperiorLayer;
-            Debug.Log($"Now painting on: {(paintOnSuperiorLayer ? "SUPERIOR" : "MAIN")} layer");
-        }
+   
     }
+
+   
 }

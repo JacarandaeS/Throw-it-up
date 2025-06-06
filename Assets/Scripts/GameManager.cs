@@ -4,11 +4,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject optionScreen;
-    [SerializeField] private Slider smoothSpeedSlider; // Existing slider
-    [SerializeField] private Slider cameraSpeedSlider; // ? New slider for camera speed
+    [SerializeField] private Slider smoothSpeedSlider;
+    [SerializeField] private Slider cameraSpeedSlider;
     [SerializeField] private float smoothSpeed = 8f;
-    [SerializeField] private float cameraSpeed = 0.1f;  // ? New value
+    [SerializeField] private float cameraSpeed = 0.1f;
     [SerializeField] private GameObject activeCans;
+    [SerializeField] private GameObject optionObject;
+    private bool TopLayerPainting = true;
 
     private bool isTurnedOn = false;
 
@@ -17,54 +19,30 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         if (instance == null) {
             instance = this;
-            Cursor.visible = false;
+            //Cursor.visible = false;
         }
         else {
             Destroy(gameObject);
             return;
         }
 
-        // Set initial values from sliders
+        // Set initial slider values and subscribe to changes
         if (smoothSpeedSlider != null) {
-            SetSmoothSpeed(smoothSpeedSlider.value);
+            smoothSpeedSlider.value = smoothSpeed;
+            smoothSpeedSlider.onValueChanged.AddListener(SetSmoothSpeed);
         }
 
         if (cameraSpeedSlider != null) {
-            SetCameraSpeed(cameraSpeedSlider.value);
+            cameraSpeedSlider.value = cameraSpeed;
+            cameraSpeedSlider.onValueChanged.AddListener(SetCameraSpeed);
         }
     }
 
     void Update() {
         if (Input.GetKeyUp(KeyCode.Escape)) {
-            if (isTurnedOn == false) {
             isTurnedOn = !isTurnedOn;
             optionScreen.SetActive(isTurnedOn);
             activeCans.SetActive(!isTurnedOn);
-                Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-                Cursor.visible = true;                  // Make it visible
-
-
-
-            }
-            else {
-                isTurnedOn = !isTurnedOn;
-                optionScreen.SetActive(isTurnedOn);
-                activeCans.SetActive(!isTurnedOn);
-                Cursor.lockState = CursorLockMode.None; // Lock the cursor (like in FPS)
-                Cursor.visible = false;                   // Hide it
-
-            }
-
-
-        }
-
-        // Update both speeds continuously
-        if (smoothSpeedSlider != null) {
-            SetSmoothSpeed(smoothSpeedSlider.value);
-        }
-
-        if (cameraSpeedSlider != null) {
-            SetCameraSpeed(cameraSpeedSlider.value);
         }
     }
 
@@ -91,12 +69,16 @@ public class GameManager : MonoBehaviour {
         Debug.Log($"Smooth speed set to: {smoothSpeed}");
     }
 
-    // ? New camera speed getter/setter
     public float GetCameraSpeed() {
         return cameraSpeed;
     }
 
     public void SetCameraSpeed(float value) {
         cameraSpeed = value;
+        Debug.Log($"Camera speed set to: {cameraSpeed}");
+    }
+
+    public void EnableOptions() {
+
     }
 }

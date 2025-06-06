@@ -6,6 +6,8 @@ public class PaintManager : Singleton<PaintManager> {
     public Shader texturePaint;
     public Shader extendIslands;
 
+    [Header("Layer Toggle")]
+    public bool layer2 = false;
 
     // Shader Property IDs
     int prepareUVID = Shader.PropertyToID("_PrepareUV");
@@ -26,12 +28,16 @@ public class PaintManager : Singleton<PaintManager> {
 
     public override void Awake() {
         base.Awake();
-
         paintMaterial = new Material(texturePaint);
         extendMaterial = new Material(extendIslands);
-        command = new CommandBuffer();
-        command.name = "CommandBuffer - " + gameObject.name;
+        command = new CommandBuffer { name = "CommandBuffer - " + gameObject.name };
+    }
 
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.L)) {
+            layer2 = !layer2;
+            Debug.Log("Layer2 toggled: " + layer2);
+        }
     }
 
     public void initTextures(Paintable paintable) {
@@ -42,7 +48,6 @@ public class PaintManager : Singleton<PaintManager> {
         RenderTexture support = paintable.getSupport();
         Renderer rend = paintable.getRenderer();
 
-        // Clear all textures
         command.SetRenderTarget(mask);
         command.ClearRenderTarget(false, true, Color.clear);
 
@@ -55,7 +60,6 @@ public class PaintManager : Singleton<PaintManager> {
         command.SetRenderTarget(support);
         command.ClearRenderTarget(false, true, Color.clear);
 
-        // Prepare UV islands
         paintMaterial.SetFloat(prepareUVID, 1);
         command.SetRenderTarget(uvIslands);
         command.DrawRenderer(rend, paintMaterial, 0);
@@ -66,54 +70,55 @@ public class PaintManager : Singleton<PaintManager> {
 
     public void paint(Paintable paintable, Vector3 pos, float radius = 1f,
                      float hardness = .5f, float strength = .5f,
-                     Color? color = null, bool paintOnSuperior = false) {
+                     Color? color = null) {
 
-        // Update paint position visualization
+        if (paintable == null) {
+            Debug.LogWarning("Tried to paint on null Paintable object");
+            return;
+        }
 
+        try {
+            RenderTexture targetMask = layer2 ? paintable.getMaskSuperior() : paintable.getMask();
+            RenderTexture uvIslands = paintable.getUVIslands();
+            RenderTexture extend = paintable.getExtend();
+            RenderTexture support = paintable.getSupport();
+            Renderer rend = paintable.getRenderer();
 
-        RenderTexture targetMask = paintOnSuperior ? paintable.getMaskSuperior() : paintable.getMask();
-        RenderTexture uvIslands = paintable.getUVIslands();
-        RenderTexture extend = paintable.getExtend();
-        RenderTexture support = paintable.getSupport();
-        Renderer rend = paintable.getRenderer();
+            // Paint material setup
+            paintMaterial.SetFloat(prepareUVID, 0);
+            paintMaterial.SetVector(positionID, pos);
+            paintMaterial.SetFloat(hardnessID, hardness);
+            paintMaterial.SetFloat(strengthID, strength);
+            paintMaterial.SetFloat(radiusID, radius);
+            paintMaterial.SetTexture(textureID, support);
+            paintMaterial.SetColor(colorID, color ?? Color.red);
 
-        // Set up paint material
-        paintMaterial.SetFloat(prepareUVID, 0);
-        paintMaterial.SetVector(positionID, pos);
-        paintMaterial.SetFloat(hardnessID, hardness);
-        paintMaterial.SetFloat(strengthID, strength);
-        paintMaterial.SetFloat(radiusID, radius);
-        paintMaterial.SetTexture(textureID, support);
-        paintMaterial.SetColor(colorID, color ?? Color.red);
-        paintMaterial.SetFloat(maskTypeID, paintOnSuperior ? 1 : 0); // Tell shader which mask we're painting on
+            // Extend material setup
+            extendMaterial.SetFloat(uvOffsetID, paintable.extendsIslandOffset);
+            extendMaterial.SetTexture(uvIslandsID, uvIslands);
 
-        // Set up extend material
-        extendMaterial.SetFloat(uvOffsetID, paintable.extendsIslandOffset);
-        extendMaterial.SetTexture(uvIslandsID, uvIslands);
+            // Command buffer paint process
+            command.Clear();
 
-        // Paint operations
-        command.SetRenderTarget(targetMask);
-        command.DrawRenderer(rend, paintMaterial, 0);
+            command.SetRenderTarget(targetMask);
+            command.DrawRenderer(rend, paintMaterial, 0);
 
-        command.SetRenderTarget(support);
-        command.Blit(targetMask, support);
+            command.SetRenderTarget(support);
+            command.Blit(targetMask, support);
 
-        command.SetRenderTarget(extend);
-        command.Blit(targetMask, extend, extendMaterial);
+            command.SetRenderTarget(extend);
+            command.Blit(targetMask, extend, extendMaterial);
 
-        Graphics.ExecuteCommandBuffer(command);
-        command.Clear();
+            Graphics.ExecuteCommandBuffer(command);
+        }
+        catch (System.Exception e) {
+            return;
+        }
     }
-
-
-
-
 
     void OnDestroy() {
         if (command != null) {
             command.Release();
         }
-
-
     }
 }

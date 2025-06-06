@@ -9,7 +9,7 @@ public class DigitalPhotoCameraController : MonoBehaviour {
     [Header("Zoom Settings")]
     [SerializeField] private float fieldOfViewDifference = 5f;
     [SerializeField] private float minFOV = 15f;
-    [SerializeField] private float maxFOV = 90f;
+    [SerializeField] private float maxFOV = 70f;
 
     [Header("Photo Settings")]
     [SerializeField] private RenderTexture renderTexture;

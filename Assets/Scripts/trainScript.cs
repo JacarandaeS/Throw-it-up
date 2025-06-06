@@ -7,7 +7,7 @@ public class trainScript : MonoBehaviour
     private float leftBorder = -450f;
     
 
-    void Update() {
+    void FixedUpdate() {
       
         Vector3 pos = transform.position;
         if (pos.x < leftBorder) {

@@ -6,7 +6,7 @@ public class CarScript : MonoBehaviour {
     private float backBorder = -71f;
     private float frontBorder = 160;
 
-    void Update() {
+    void FixedUpdate() {
         Vector3 pos = transform.position;
         if (isGoingAway) {
             if (pos.z > frontBorder) {

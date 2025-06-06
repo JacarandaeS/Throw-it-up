@@ -46,7 +46,7 @@ public class Paintable : MonoBehaviour {
 
         // Create textures with consistent settings
         maskRenderTexture = CreateTexture(width, height, format);
-        
+
         maskRenderTextureSuperior = CreateTexture(width, height, format);
         //Debug.Log(maskRenderTexture.name + "wacawaca");
         extendIslandsRenderTexture = CreateTexture(width, height, format);
