@@ -139,24 +139,24 @@ public class SprayManager : MonoBehaviour {
             crosshairCanvas.SetActive(false);
         }
 
-        Ray rayBackward = new Ray(transform.position, -transform.forward);
-        RaycastHit hitBackward;
+        //Ray rayBackward = new Ray(transform.position, -transform.forward);
+        //RaycastHit hitBackward;
 
-        if (Physics.Raycast(rayBackward, out hitBackward, 10f)) {
-            Debug.DrawRay(rayBackward.origin, hitBackward.point - rayBackward.origin, Color.blue);
+        //if (Physics.Raycast(rayBackward, out hitBackward, 10f)) {
+        //    Debug.DrawRay(rayBackward.origin, hitBackward.point - rayBackward.origin, Color.blue);
 
-            Paintable pBack = hitBackward.collider.GetComponent<Paintable>();
-            if (pBack != null) {
-                Debug.Log("Hit behind: " + hitBackward.collider.name);
+        //    Paintable pBack = hitBackward.collider.GetComponent<Paintable>();
+        //    if (pBack != null) {
+        //        Debug.Log("Hit behind: " + hitBackward.collider.name);
 
-                Vector3 offsetHitPoint = hitBackward.point + hitBackward.normal * 0.001f;
-                crosshairCanvas.transform.position = offsetHitPoint;
-                crosshairCanvas.transform.rotation = Quaternion.LookRotation(hitBackward.normal);
-                crosshairCanvas.SetActive(true);
+        //        Vector3 offsetHitPoint = hitBackward.point + hitBackward.normal * 0.001f;
+        //        crosshairCanvas.transform.position = offsetHitPoint;
+        //        crosshairCanvas.transform.rotation = Quaternion.LookRotation(hitBackward.normal);
+        //        crosshairCanvas.SetActive(true);
 
-                screenPosition.z = Camera.main.WorldToScreenPoint(offsetHitPoint + new Vector3(0, 0, (distance + 12))).z;
-            }
-        }
+        //        screenPosition.z = Camera.main.WorldToScreenPoint(offsetHitPoint + new Vector3(0, 0, (distance + 12))).z;
+        //    }
+        //}
     }
 
     void HandleSprayMovement() {

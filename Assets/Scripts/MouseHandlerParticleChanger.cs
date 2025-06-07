@@ -1,12 +1,10 @@
 using UnityEngine;
 
 public class MouseHandlerParticleChanger : MonoBehaviour {
-    [SerializeField] ColorManager colorManager; // <- Name was missing
     [SerializeField] GameObject pintura;
     [SerializeField] ParticleSystem sprayParticles;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip spraySound;
-
 
     private bool pinturaActiva = false;
     public float baseAmount = 0f;
@@ -30,9 +28,11 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
     }
 
     void HandleOnOff() {
-        // Set the particle start color to the current color from the ColorManager singleton
-        var main = sprayParticles.main;
-        main.startColor = ColorManager.instance.currentColor;
+        // Use the singleton instance directly
+        if (ColorManager.instance != null && sprayParticles != null) {
+            var main = sprayParticles.main;
+            main.startColor = ColorManager.instance.currentColor;
+        }
 
         if (Input.GetMouseButton(0) && !pinturaActiva) {
             pintura.SetActive(true);

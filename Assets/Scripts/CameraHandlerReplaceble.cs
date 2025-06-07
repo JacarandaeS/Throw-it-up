@@ -8,10 +8,11 @@ public class CameraHandlerReplaceble : MonoBehaviour {
     [SerializeField] private float backBorder = -16.0f;
     [SerializeField] private float leftBorder = 0;
     [SerializeField] private float rightBorder = 0;
+    public float movementSpeed = 1f;
     void FixedUpdate() {
-
-        float movementSpeed = GameManager.instance.GetCameraSpeed(); // ? Use camera speed from GameManager
-
+        if (GameManager.instance != null) {
+            float movementSpeed = GameManager.instance.GetCameraSpeed(); // ? Use camera speed from GameManager
+        }
 
         if (Input.GetKey(KeyCode.D)) {
             Vector3 pos = transform.position;
