@@ -11,11 +11,27 @@ public class MousePainter : MonoBehaviour {
     public float strength = 1;
     public float hardness = 1;
 
+    private float originalRadius; // Store the original radius
     private Vector3? lastPaintPos = null; // Nullable Vector3
+
+    void Start() {
+        originalRadius = radius; // Initialize the original radius
+    }
 
     void Update() {
         paintColor = ColorManager.instance.currentColor;
         bool click = mouseSingleClick ? Input.GetMouseButtonDown(0) : Input.GetMouseButton(0);
+
+
+        if (Input.GetKey(KeyCode.LeftControl)) {
+            radius += 0.1f;
+            radius = Mathf.Min(radius, 2f); // Set a maximum limit (adjust as needed)
+        }
+        else if (radius > originalRadius)  // Only decrease if above original
+        {
+            radius -= 0.1f;
+            radius = Mathf.Max(radius, originalRadius); // Don't go below original
+        }
 
         if (click) {
             Vector3 position = Input.mousePosition;

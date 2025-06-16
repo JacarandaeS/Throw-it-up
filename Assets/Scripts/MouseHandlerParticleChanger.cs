@@ -54,11 +54,11 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
         }
     }
 
-    void handleRotationOfCans() {
-        if (Input.GetMouseButton(1)) {
-            Debug.Log("clickderecho");
-        }
-    }
+    //void handleRotationOfCans() {
+    //    if (Input.GetMouseButton(1)) {
+    //        Debug.Log("clickderecho");
+    //    }
+    //}
 
     void HandleAmountChange() {
         if (Input.GetKey(KeyCode.LeftControl)) {

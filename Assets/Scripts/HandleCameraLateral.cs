@@ -1,15 +1,25 @@
 //using System.Diagnostics;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class HandleCameraLateral : MonoBehaviour
 {
     [SerializeField] private float leftTop;
     [SerializeField] private float rightTop;
-   
+    private CinemachineCamera virtualCamera;
+    void Awake() {
+        // Automatically gets the CinemachineVirtualCamera on the same GameObject
+        virtualCamera = GetComponent<CinemachineCamera>();
+
+        // Safety check
+        if (virtualCamera == null) {
+            Debug.LogError("No CinemachineVirtualCamera found on this GameObject!", this);
+        }
+    }
     void FixedUpdate()
     {
         float movementSpeed = GameManager.instance.GetCameraSpeed(); // ? Use camera speed from GameManager
-
+        if (!IsActiveCamera()) return;
 
         if (Input.GetKey(KeyCode.D)) {
             Vector3 pos = transform.position;
@@ -17,7 +27,6 @@ public class HandleCameraLateral : MonoBehaviour
                 return;
             }else {
                 pos.x += movementSpeed;
-               // Debug.Log(pos.x);
                 transform.position = pos;
             }
            
@@ -32,7 +41,12 @@ public class HandleCameraLateral : MonoBehaviour
                 pos.x -= movementSpeed;
                 transform.position = pos;
             }
+
            
         }
+        
+    }
+    private bool IsActiveCamera() {
+        return virtualCamera != null && virtualCamera.Priority >= 10; // Same threshold as above
     }
 }

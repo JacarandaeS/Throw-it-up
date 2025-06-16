@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mmurga
-  m_Shader: {fileID: -6465566751694194690, guid: d720082e5b71004498653db605c207b2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: c688ade3184b4b64f84cbae33a586a8e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

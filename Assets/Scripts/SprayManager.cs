@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SprayManager : MonoBehaviour {
     public static SprayManager instance;
 
     [SerializeField] private GameObject skinniCap;
-    [SerializeField] private GameObject mediumCap;
-    [SerializeField] private GameObject biseladoCap;
+    // [SerializeField] private GameObject mediumCap;
+    //   [SerializeField] private GameObject biseladoCap;
     [SerializeField] private GameObject mixerCap;
     [SerializeField] private GameObject crosshairCanvas;
     [SerializeField] private float distance = 2f;
     [SerializeField] private float loweredYAmount = 0.05f;
     [SerializeField] private float rotationSpeed = 2f;
     [SerializeField] private float positionLerpSpeed = 5f;
+    [SerializeField] private float tiltAmount = 45;
 
     private Vector3 screenPosition;
     [HideInInspector] public bool raycastEnabled = true;
@@ -29,14 +31,15 @@ public class SprayManager : MonoBehaviour {
     private Vector3 originalLocalPosition;
     private Vector3 targetLocalPosition;
 
+    private LayerMask pintableLayer = 8;
     void Awake() {
         if (instance == null) {
             instance = this;
         }
 
         aerosoles.Add(skinniCap);
-        aerosoles.Add(mediumCap);
-        aerosoles.Add(biseladoCap);
+       // aerosoles.Add(mediumCap);
+       // aerosoles.Add(biseladoCap);
         aerosoles.Add(mixerCap);
 
         foreach (var spray in aerosoles) {
@@ -54,22 +57,25 @@ public class SprayManager : MonoBehaviour {
             targetLocalPosition = originalLocalPosition;
         }
     }
+   
 
-    void Update() {
+    void FixedUpdate() {
         HandleSprayMovement();
+        
         handleSprayChange();
         handleRotation();
 
         if (raycastEnabled) {
             HandleRaycast();
         }
+        
     }
 
     void handleRotation() {
         if (currentSpray == null) return;
 
         if (Input.GetMouseButton(1)) {
-            targetRotation = Quaternion.Euler(-35f, originalRotation.eulerAngles.y, originalRotation.eulerAngles.z);
+            targetRotation = Quaternion.Euler(-tiltAmount, originalRotation.eulerAngles.y, originalRotation.eulerAngles.z);
             targetLocalPosition = originalLocalPosition - new Vector3(0, loweredYAmount, 0);
             isRotating = true;
         }
@@ -81,14 +87,14 @@ public class SprayManager : MonoBehaviour {
 
         if (isRotating) {
             // Smooth rotation
-            currentSpray.transform.localRotation = Quaternion.Lerp(
+                currentSpray.transform.localRotation = Quaternion.Lerp(
                 currentSpray.transform.localRotation,
                 targetRotation,
                 Time.deltaTime * rotationSpeed
             );
 
             // Smooth vertical movement
-            currentSpray.transform.localPosition = Vector3.Lerp(
+                currentSpray.transform.localPosition = Vector3.Lerp(
                 currentSpray.transform.localPosition,
                 targetLocalPosition,
                 Time.deltaTime * positionLerpSpeed
@@ -114,49 +120,34 @@ public class SprayManager : MonoBehaviour {
             targetLocalPosition = originalLocalPosition;
 
             Debug.Log("Selected spray: " + currentSpray.name);
+           // Ray cameraRaycast = new Ray();
         }
     }
 
     void HandleRaycast() {
         Ray rayForward = new Ray(transform.position, transform.forward);
         RaycastHit hitForward;
+        bool hitSomething = Physics.Raycast(rayForward, out hitForward, 10f);
 
-        if (Physics.Raycast(rayForward, out hitForward, 10f)) {
+        if (hitSomething) {
             Debug.DrawRay(rayForward.origin, hitForward.point - rayForward.origin, Color.red);
 
             Paintable p = hitForward.collider.GetComponent<Paintable>();
             if (p != null) {
-                crosshairCanvas.transform.position = hitForward.point - new Vector3(0, 0, 0.001f);
-                crosshairCanvas.transform.rotation = Quaternion.LookRotation(hitForward.normal);
+                // Position the crosshair slightly in front of the surface (0.01 units)
+                crosshairCanvas.transform.position = hitForward.point + hitForward.normal * .01f;
+                // Make the crosshair face the camera while aligning with the surface normal
+                //crosshairCanvas.transform.rotation = Quaternion.LookRotation(-hitForward.normal, Camera.main.transform.up);
+
                 crosshairCanvas.SetActive(true);
             }
             else {
                 crosshairCanvas.SetActive(false);
-                screenPosition.z = Camera.main.WorldToScreenPoint(crosshairCanvas.transform.position - new Vector3(0, 0, distance)).z;
             }
         }
         else {
             crosshairCanvas.SetActive(false);
         }
-
-        //Ray rayBackward = new Ray(transform.position, -transform.forward);
-        //RaycastHit hitBackward;
-
-        //if (Physics.Raycast(rayBackward, out hitBackward, 10f)) {
-        //    Debug.DrawRay(rayBackward.origin, hitBackward.point - rayBackward.origin, Color.blue);
-
-        //    Paintable pBack = hitBackward.collider.GetComponent<Paintable>();
-        //    if (pBack != null) {
-        //        Debug.Log("Hit behind: " + hitBackward.collider.name);
-
-        //        Vector3 offsetHitPoint = hitBackward.point + hitBackward.normal * 0.001f;
-        //        crosshairCanvas.transform.position = offsetHitPoint;
-        //        crosshairCanvas.transform.rotation = Quaternion.LookRotation(hitBackward.normal);
-        //        crosshairCanvas.SetActive(true);
-
-        //        screenPosition.z = Camera.main.WorldToScreenPoint(offsetHitPoint + new Vector3(0, 0, (distance + 12))).z;
-        //    }
-        //}
     }
 
     void HandleSprayMovement() {
@@ -166,18 +157,33 @@ public class SprayManager : MonoBehaviour {
         float smoothSpeed = GameManager.instance != null ? GameManager.instance.GetSmoothSpeed() : 20f;
 
         screenPosition = Input.mousePosition;
-        screenPosition.z = Camera.main.WorldToScreenPoint(crosshairCanvas.transform.position - new Vector3(0, 0, distance)).z;
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
+        // Raycast to get depth from a paintable surface
+        Ray cameraRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(cameraRay, out RaycastHit camHit, 100f)) {
+            Paintable p = camHit.collider.GetComponent<Paintable>();
+            if (p != null) {
+                Vector3 worldPoint = camHit.point;
+                screenPosition.z = Camera.main.WorldToScreenPoint(worldPoint).z + distance;
+            }
+        }
+
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
         targetWorldPosition = Vector3.Lerp(targetWorldPosition, mouseWorldPosition, Time.deltaTime * smoothSpeed);
         transform.position = targetWorldPosition;
-    }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 10f);
+        // **Calculate Y rotation (left/right) based on screen X position**
+        float screenWidth = Screen.width;
+        float normalizedX = Mathf.Clamp01(screenPosition.x / screenWidth);
+        float targetRotationY = Mathf.Lerp(-45f, 45f, normalizedX);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position - transform.forward * 10f);
+        // **Calculate X rotation (up/down) based on screen Y position**
+        float screenHeight = Screen.height;
+        float normalizedY = Mathf.Clamp01(screenPosition.y / screenHeight);
+        float targetRotationX = Mathf.Lerp(25f, -25f, normalizedY);
+
+        // Apply rotations smoothly, forcing Z = 0
+        Quaternion targetRotation = Quaternion.Euler(targetRotationX, targetRotationY, 0); // Explicitly set Z to 0
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * smoothSpeed);
     }
 }

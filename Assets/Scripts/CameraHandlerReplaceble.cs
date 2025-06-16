@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraHandlerReplaceble : MonoBehaviour {
@@ -8,15 +9,19 @@ public class CameraHandlerReplaceble : MonoBehaviour {
     [SerializeField] private float backBorder = -16.0f;
     [SerializeField] private float leftBorder = 0;
     [SerializeField] private float rightBorder = 0;
+    [SerializeField] private CinemachineCamera playerCamera;
     public float movementSpeed = 1f;
+    private bool isCrouch = false;
+    private bool crouchKeyPressedLastFrame = false;
     void FixedUpdate() {
         if (GameManager.instance != null) {
             float movementSpeed = GameManager.instance.GetCameraSpeed(); // ? Use camera speed from GameManager
         }
+        if (!IsActiveCamera()) return;
 
         if (Input.GetKey(KeyCode.D)) {
             Vector3 pos = transform.position;
-            if(pos.x > rightBorder) {
+            if (pos.x > rightBorder) {
                 return;
             }
             pos.x += movementSpeed;
@@ -25,7 +30,7 @@ public class CameraHandlerReplaceble : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A)) {
             Vector3 pos = transform.position;
-            if(pos.x < leftBorder) {
+            if (pos.x < leftBorder) {
                 return;
             }
             pos.x -= movementSpeed;
@@ -39,7 +44,7 @@ public class CameraHandlerReplaceble : MonoBehaviour {
             }
             else {
                 pos.z -= movementSpeed;
-                transform.position = pos;    
+                transform.position = pos;
             }
         }
 
@@ -52,7 +57,32 @@ public class CameraHandlerReplaceble : MonoBehaviour {
                 pos.z += movementSpeed;
                 transform.position = pos;
             }
+
         }
+       bool crouchKeyPressed = Input.GetKey(KeyCode.C);
+        
+        if (crouchKeyPressed && !crouchKeyPressedLastFrame)
+        {
+            Vector3 pos = transform.position;
+            if (!isCrouch)
+            {
+                pos.y -= 2f;
+                isCrouch = true;
+            }
+            else
+            {
+                pos.y += 2f;
+                isCrouch = false;
+            }
+            transform.position = pos;
+        }
+        
+        crouchKeyPressedLastFrame = crouchKeyPressed;
+    }
+    private bool IsActiveCamera() {
+        return playerCamera != null && playerCamera.Priority >= 9;
     }
 }
+
+    
 
