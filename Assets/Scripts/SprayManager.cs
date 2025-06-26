@@ -57,12 +57,15 @@ public class SprayManager : MonoBehaviour {
             targetLocalPosition = originalLocalPosition;
         }
     }
-   
+    void Update() {
+        handleSprayChange(); // ✅ call it here instead of FixedUpdate
+    }
+
 
     void FixedUpdate() {
         HandleSprayMovement();
         
-        handleSprayChange();
+       // handleSprayChange();
         handleRotation();
 
         if (raycastEnabled) {
@@ -136,8 +139,7 @@ public class SprayManager : MonoBehaviour {
             if (p != null) {
                 // Position the crosshair slightly in front of the surface (0.01 units)
                 crosshairCanvas.transform.position = hitForward.point + hitForward.normal * .01f;
-                // Make the crosshair face the camera while aligning with the surface normal
-                //crosshairCanvas.transform.rotation = Quaternion.LookRotation(-hitForward.normal, Camera.main.transform.up);
+                
 
                 crosshairCanvas.SetActive(true);
             }

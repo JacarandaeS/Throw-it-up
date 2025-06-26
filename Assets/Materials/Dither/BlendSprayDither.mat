@@ -131,8 +131,8 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _dithersize: 0.3
-    - _intensidad: 0.8
+    - _dithersize: 0.01
+    - _intensidad: 0.5
     m_Colors:
     - _AlbedoColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

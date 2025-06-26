@@ -5,6 +5,8 @@
         _PainterColor ("Painter Color", Color) = (0, 0, 0, 0)
         _MainTex ("Main Texture", 2D) = "white" {}
         [Enum(Main,0,Superior,1)] _MaskType ("Mask Type", Int) = 0
+        [Enum(Circle, 0, Square, 1, Texture, 2)] _BrushMode ("Brush Mode", Int) = 0
+        _BrushTex ("Brush Texture", 2D) = "white" {}
     }
 
     SubShader 
@@ -19,6 +21,7 @@
         Pass 
         {
             CGPROGRAM
+            #pragma target 3.0
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
@@ -32,14 +35,17 @@
             float _Strength;
             float4 _PainterColor;
             float _PrepareUV;
-            int _MaskType; // 0 = Main, 1 = Superior
+            int _MaskType;
+            int _BrushMode;
+            sampler2D _BrushTex;
+            float2 _BrushSize; 
 
             struct appdata 
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
-
+      
             struct v2f 
             {
                 float4 vertex : SV_POSITION;
@@ -47,11 +53,30 @@
                 float3 worldPos : TEXCOORD1;
             };
 
-            // Your original brush mask falloff - unchanged
-            float mask(float3 position, float3 center, float radius, float hardness) 
+            float circleMask(float3 position, float3 center, float radius, float hardness) 
             {
-                float dist = distance(center, position);
+                float dist = distance(center.xy, position.xy);
                 return saturate(1.0 - smoothstep(radius * hardness, radius, dist));
+            }
+
+            float squareMask(float3 position, float3 center, float2 size, float hardness) 
+            {
+                float2 offset = position.xy - center.xy;
+                float2 dist = abs(offset) / (size * 0.5);
+                float maxDist = max(dist.x, dist.y);
+                return saturate(1.0 - smoothstep(hardness, 1.0, maxDist));
+            }
+
+            float textureMask(float3 position, float3 center, float radius, sampler2D brushTex)
+            {
+                float2 offset = (position.xy - center.xy) / radius;
+                offset = offset * 0.5 + 0.5;
+
+                if (offset.x < 0.0 || offset.x > 1.0 || offset.y < 0.0 || offset.y > 1.0)
+                    return 0.0;
+
+                float4 brushSample = tex2D(brushTex, offset);
+                return brushSample.a; // Use the alpha channel here!
             }
 
             v2f vert(appdata v) 
@@ -72,28 +97,34 @@
             fixed4 frag(v2f i) : SV_Target 
             {
                 if (_PrepareUV > 0) {
-                    return float4(0, 0, 1, 1); // UV visualization pass
+                    return float4(0, 0, 1, 1);
                 }
 
                 float4 baseColor = tex2D(_MainTex, i.uv);
                 baseColor.a = max(baseColor.a, 0.001);
 
-                float brushFalloff = mask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
-                float influence = saturate(brushFalloff * _Strength);
+                float influence = 0;
 
-                if (influence < 0.001) discard;
-
-                // Keep your original influence calculation
-                influence = pow(influence, 0.5);
-
-                // Dual-mask handling - main difference is here
-                if (_MaskType == 0) {
-                    // Main mask - standard blending
-                    return lerp(baseColor, _PainterColor, influence);
+                if (_BrushMode == 0)
+                {
+                    float falloff = circleMask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
+                    influence = pow(saturate(falloff * _Strength), 0.5);
                 }
-                else {
-                    // Superior mask - binary output (painted or not)
-                    return influence > 0.5 ? _PainterColor : float4(0,0,0,0);
+                else if (_BrushMode == 1)
+                {
+                    float falloff = squareMask(i.worldPos.xyz, _PainterPosition, float2(_Radius, _Radius), _Hardness);
+                    influence = pow(saturate(falloff * _Strength), 0.5);
+                }
+                else if (_BrushMode == 2)
+                {
+                    float texVal = textureMask(i.worldPos.xyz, _PainterPosition, _Radius, _BrushTex);
+                    influence = saturate(texVal * _Strength);
+                }
+
+                if (_MaskType == 0) {
+                    return lerp(baseColor, _PainterColor, influence);
+                } else {
+                    return influence > 0.5 ? _PainterColor : float4(0, 0, 0, 0);
                 }
             }
             ENDCG

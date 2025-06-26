@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PortonNegroGraffiti
+  m_Name: CartelPublicidad 1
   m_Shader: {fileID: -6465566751694194690, guid: c688ade3184b4b64f84cbae33a586a8e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -33,11 +33,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_3c9e15eb8c374e0495f36ea3d57473ab:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 39768bedefab037478c229ea1959c675, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_41271c3c5f484ca2a435c65087a81705:
-        m_Texture: {fileID: 2800000, guid: f1c69376cdd6edf4081f64d2edd9affd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 43c429f58dab5874e8e035f5a003a8c6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_9b6a369b9e8747268b99217d44bc2166:
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _cosa:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d912e4d4e2daf5442b58aa9a30d396cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _maskSuperior:
@@ -73,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normales:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 936b83c62eba28449a0f8694f5144e07, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -91,11 +91,11 @@ Material:
     m_Ints: []
     m_Floats:
     - BOOLEAN_7537779AF731407FB2B8FA45F3CE7497: 0
-    - Vector1_0de750b9c41b4a5daef844a1599f5ac7: 1
+    - Vector1_0de750b9c41b4a5daef844a1599f5ac7: 0.9
     - Vector1_2871f666316541908d110962eef07f02: 0
     - Vector1_2c6f3ce4bba145b09c0a22fced0d7f85: 0
     - Vector1_7bf270fe91494824b4209d2dc1faae23: 0.3
-    - Vector1_8e760635099b4147956bb9600d13cac2: 0
+    - Vector1_8e760635099b4147956bb9600d13cac2: 20
     - Vector1_b160a6374fb04a77b114bb611b8c55e4: 0
     - Vector1_b5cc7f6f25194a778cb438f45fbbce66: 0
     - Vector1_dcd729e4cd23406784678484c17def53: 1

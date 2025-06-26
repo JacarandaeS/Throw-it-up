@@ -21,10 +21,13 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
         currentAmount = baseAmount;
         SetSphericalDirectionAmount(currentAmount);
     }
+    private void FixedUpdate() {
+        HandleAmountChange();
+    }
 
     void Update() {
         HandleOnOff();
-        HandleAmountChange();
+        
     }
 
     void HandleOnOff() {
@@ -54,11 +57,6 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
         }
     }
 
-    //void handleRotationOfCans() {
-    //    if (Input.GetMouseButton(1)) {
-    //        Debug.Log("clickderecho");
-    //    }
-    //}
 
     void HandleAmountChange() {
         if (Input.GetKey(KeyCode.LeftControl)) {

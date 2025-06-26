@@ -8,6 +8,12 @@ public class PaintManager : Singleton<PaintManager> {
 
     [Header("Layer Toggle")]
     public bool layer2 = false;
+    [SerializeField] private Texture2D brushTexture;
+
+
+    // Brush modes
+    public enum BrushMode { Circle, Square, Texture }
+    public BrushMode currentBrushMode = BrushMode.Circle;
 
     // Shader Property IDs
     int prepareUVID = Shader.PropertyToID("_PrepareUV");
@@ -21,6 +27,7 @@ public class PaintManager : Singleton<PaintManager> {
     int uvOffsetID = Shader.PropertyToID("_OffsetUV");
     int uvIslandsID = Shader.PropertyToID("_UVIslands");
     int maskTypeID = Shader.PropertyToID("_MaskType");
+    int brushModeID = Shader.PropertyToID("_BrushMode");
 
     Material paintMaterial;
     Material extendMaterial;
@@ -37,6 +44,12 @@ public class PaintManager : Singleton<PaintManager> {
         if (Input.GetKeyDown(KeyCode.L)) {
             layer2 = !layer2;
             Debug.Log("Layer2 toggled: " + layer2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O)) {
+            // Cycle through brush modes
+            currentBrushMode = (BrushMode)(((int)currentBrushMode + 1) % 3);
+            Debug.Log("Brush mode changed to: " + currentBrushMode.ToString());
         }
     }
 
@@ -92,6 +105,12 @@ public class PaintManager : Singleton<PaintManager> {
             paintMaterial.SetFloat(radiusID, radius);
             paintMaterial.SetTexture(textureID, support);
             paintMaterial.SetColor(colorID, color ?? Color.red);
+            paintMaterial.SetInt(brushModeID, (int)currentBrushMode);
+
+            // Only set brush texture if we're in texture mode
+            if (currentBrushMode == BrushMode.Texture && brushTexture != null) {
+                paintMaterial.SetTexture("_BrushTex", brushTexture);
+            }
 
             // Extend material setup
             extendMaterial.SetFloat(uvOffsetID, paintable.extendsIslandOffset);
@@ -112,6 +131,7 @@ public class PaintManager : Singleton<PaintManager> {
             Graphics.ExecuteCommandBuffer(command);
         }
         catch (System.Exception e) {
+            Debug.LogError("Painting error: " + e.Message);
             return;
         }
     }

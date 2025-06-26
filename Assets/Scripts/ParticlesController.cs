@@ -23,7 +23,7 @@ public class ParticlesController : MonoBehaviour {
     void OnParticleCollision(GameObject other) {
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
         Paintable p = other.GetComponent<Paintable>();
-
+        p.MarkAsPainted();
         if (p != null) {
             for (int i = 0; i < numCollisionEvents; i++) {
                 Vector3 pos = collisionEvents[i].intersection;
