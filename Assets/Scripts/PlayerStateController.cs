@@ -7,8 +7,9 @@ public class PlayerStateController : MonoBehaviour {
     [SerializeField] private CinemachineCamera camara1;
     [SerializeField] private GameObject activePainter;
     [SerializeField] private GameObject photocamera;
-    [SerializeField] private GameObject CrosshairCanvas;
+    //[SerializeField] private GameObject CrosshairCanvas;
     [SerializeField] private GameObject crosshair;
+    [SerializeField] private GameObject colorPickerCanvas;
     [SerializeField] private TextMeshProUGUI textMeshPro;
 
 
@@ -57,6 +58,18 @@ public class PlayerStateController : MonoBehaviour {
             }
         }
     }
+    void handleColorPickerUI() {
+        if (Input.GetKeyUp(KeyCode.Tab)) {
+            if (colorPickerCanvas.activeInHierarchy == false) {
+                colorPickerCanvas.SetActive(true);
+            }
+            else {
+                colorPickerCanvas.SetActive(false);
+            }
+        }
+     
+            
+        }
 
     void enableFreelook() {
         // Disable the painter

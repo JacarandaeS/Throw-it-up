@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private float cameraSpeed = 0.1f;
     [SerializeField] private GameObject activeCans;
     [SerializeField] private GameObject optionObject;
-    private bool TopLayerPainting = true;
+    //[SerializeField] private GameObject colorPickerCanvas;
+   // private bool TopLayerPainting = true;
 
     private bool isTurnedOn = false;
 
@@ -44,6 +45,8 @@ public class GameManager : MonoBehaviour {
             optionScreen.SetActive(isTurnedOn);
             activeCans.SetActive(!isTurnedOn);
         }
+
+       
     }
 
     public void Quit() {

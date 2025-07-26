@@ -167,8 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eafffd020d5d1f542ab6a9985d918de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinniCap: {fileID: 531277807}
-  mixerCap: {fileID: 636598188}
+  caps: []
   crosshairCanvas: {fileID: 0}
   distance: -4
   loweredYAmount: 0.05
@@ -177,7 +176,6 @@ MonoBehaviour:
   tiltAmount: 45
   raycastEnabled: 1
   targetWorldPosition: {x: 0, y: 0, z: 0}
-  aerosoles: []
   currentSpray: {fileID: 0}
 --- !u!1 &129688527
 GameObject:
@@ -1025,11 +1023,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &531277807 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7542796683653398614, guid: 2b03b56d21070c94a86cd71634218453, type: 3}
-  m_PrefabInstance: {fileID: 7542796683958334332}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &531277811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7542796683653398615, guid: 2b03b56d21070c94a86cd71634218453, type: 3}
@@ -1237,11 +1230,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325c96e7d700c7443a55eda8b6a8516b, type: 3}
---- !u!1 &636598188 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7542796683653398614, guid: 325c96e7d700c7443a55eda8b6a8516b, type: 3}
-  m_PrefabInstance: {fileID: 634829008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &636598189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7542796683653398615, guid: 325c96e7d700c7443a55eda8b6a8516b, type: 3}
@@ -7184,8 +7172,8 @@ MonoBehaviour:
   - {r: 0.2007832, g: 0.9056604, b: 0.82238585, a: 1}
   - {r: 1, g: 0.5, b: 0, a: 1}
   - {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
   HandPickedpalette: []
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1464438951
 Transform:
   m_ObjectHideFlags: 0
@@ -7210,7 +7198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1474374150}
-  - component: {fileID: 1474374149}
+  - component: {fileID: 1474374151}
   m_Layer: 0
   m_Name: PaintManager
   m_TagString: Untagged
@@ -7218,22 +7206,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1474374149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474374148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97807551a49343d4a84e6d24e81cff4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texturePaint: {fileID: 4800000, guid: 9472ed3696ab33d4ab23fb2a11915e0c, type: 3}
-  extendIslands: {fileID: 4800000, guid: 30512f6167fa0784ab310b688406279d, type: 3}
-  layer2: 0
-  brushTexture: {fileID: 0}
 --- !u!4 &1474374150
 Transform:
   m_ObjectHideFlags: 0
@@ -7249,6 +7221,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1474374151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474374148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a97065cd947484dbdcabc2df9beca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texturePaint: {fileID: 4800000, guid: 9472ed3696ab33d4ab23fb2a11915e0c, type: 3}
+  extendIslands: {fileID: 4800000, guid: 30512f6167fa0784ab310b688406279d, type: 3}
+  currentBrushMode: 0
 --- !u!1 &1535845269
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,6 +7269,7 @@ MonoBehaviour:
   extendIslands: {fileID: 4800000, guid: 30512f6167fa0784ab310b688406279d, type: 3}
   layer2: 0
   brushTexture: {fileID: 0}
+  currentBrushMode: 0
 --- !u!4 &1535845271
 Transform:
   m_ObjectHideFlags: 0
@@ -7410,7 +7398,7 @@ GameObject:
   - component: {fileID: 1603522034}
   - component: {fileID: 1603522033}
   - component: {fileID: 1603522032}
-  - component: {fileID: 1603522036}
+  - component: {fileID: 1603522037}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -7508,7 +7496,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1603522036
+--- !u!114 &1603522037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7517,11 +7505,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1603522031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c3ea44eef20b0b4396ebe666c9a6eeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a7d47f838eaa5f48806af0839a33015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!1 &1628087260
 GameObject:
@@ -7624,7 +7613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2032732655
 ParticleSystemRenderer:
   serializedVersion: 6

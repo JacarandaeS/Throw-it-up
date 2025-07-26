@@ -76,7 +76,7 @@
                     return 0.0;
 
                 float4 brushSample = tex2D(brushTex, offset);
-                return brushSample.a; // Use the alpha channel here!
+                return brushSample.a; // Use alpha for brush influence
             }
 
             v2f vert(appdata v) 
@@ -95,38 +95,45 @@
             }
 
             fixed4 frag(v2f i) : SV_Target 
-            {
-                if (_PrepareUV > 0) {
-                    return float4(0, 0, 1, 1);
-                }
+{
+    if (_PrepareUV > 0) {
+        return float4(0, 0, 1, 1); // For UV prep/debug mode
+    }
 
-                float4 baseColor = tex2D(_MainTex, i.uv);
-                baseColor.a = max(baseColor.a, 0.001);
+    float4 baseColor = tex2D(_MainTex, i.uv);
+    baseColor.a = max(baseColor.a, 0.001); // Prevent 0 alpha
 
-                float influence = 0;
+    float influence = 0;
 
-                if (_BrushMode == 0)
-                {
-                    float falloff = circleMask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
-                    influence = pow(saturate(falloff * _Strength), 0.5);
-                }
-                else if (_BrushMode == 1)
-                {
-                    float falloff = squareMask(i.worldPos.xyz, _PainterPosition, float2(_Radius, _Radius), _Hardness);
-                    influence = pow(saturate(falloff * _Strength), 0.5);
-                }
-                else if (_BrushMode == 2)
-                {
-                    float texVal = textureMask(i.worldPos.xyz, _PainterPosition, _Radius, _BrushTex);
-                    influence = saturate(texVal * _Strength);
-                }
+    if (_BrushMode == 0)
+    {
+        float falloff = circleMask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
+        influence = pow(saturate(falloff * _Strength), 0.5);
+    }
+    else if (_BrushMode == 1)
+    {
+        float falloff = squareMask(i.worldPos.xyz, _PainterPosition, float2(_Radius, _Radius), _Hardness);
+        influence = pow(saturate(falloff * _Strength), 0.5);
+    }
+    else if (_BrushMode == 2)
+    {
+        float texVal = textureMask(i.worldPos.xyz, _PainterPosition, _Radius, _BrushTex);
+        influence = saturate(texVal * _Strength);
+    }
 
-                if (_MaskType == 0) {
-                    return lerp(baseColor, _PainterColor, influence);
-                } else {
-                    return influence > 0.5 ? _PainterColor : float4(0, 0, 0, 0);
-                }
-            }
+    float falloffFactor = pow(influence, 0.8); // soft blend curve
+    float4 paintColor = _PainterColor;
+
+    // Blend RGB additively for layering
+    float3 diff = paintColor.rgb - baseColor.rgb;
+    float3 blendedRGB = baseColor.rgb + diff * falloffFactor * paintColor.a;
+
+    // Accumulate alpha softly
+    float blendedAlpha = saturate(baseColor.a + falloffFactor * paintColor.a * 0.5);
+
+    return float4(blendedRGB, blendedAlpha);
+}
+
             ENDCG
         }
     }

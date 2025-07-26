@@ -21,13 +21,12 @@ public class ParticlesController : MonoBehaviour {
     }
 
     void OnParticleCollision(GameObject other) {
-        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
-        Paintable p = other.GetComponent<Paintable>();
+        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents); Paintable p = other.GetComponent<Paintable>();
         p.MarkAsPainted();
         if (p != null) {
             for (int i = 0; i < numCollisionEvents; i++) {
                 Vector3 pos = collisionEvents[i].intersection;
-                //float currentHardness = PaintOnSuperiorLayer ? superiorLayerHardness : hardness;
+
 
                 PaintManager.instance.paint(
                     p,
@@ -36,7 +35,7 @@ public class ParticlesController : MonoBehaviour {
                     hardness: hardness,
                     strength: strength,
                     color: paintColor
-                    //paintOnSuperior: PaintOnSuperiorLayer
+
                 );
             }
         }
@@ -44,9 +43,9 @@ public class ParticlesController : MonoBehaviour {
 
     void Update() {
         paintColor = ColorManager.instance.currentColor;
-   
+
     }
 
 
-   
+
 }

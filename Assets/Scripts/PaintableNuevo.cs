@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEditor;
 [RequireComponent(typeof(Renderer))]
-public class Paintable : MonoBehaviour {
+public class PaintableNuevo : MonoBehaviour {
     [Header("Texture Settings")]
     [SerializeField] private int TEXTURE_SIZE = 1024;
     [SerializeField] private bool isWider = false;

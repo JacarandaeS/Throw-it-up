@@ -15,6 +15,7 @@ public class DigitalPhotoCameraController : MonoBehaviour {
     [SerializeField] private RenderTexture renderTexture;
     [Tooltip("Resolution to save as PNG (should match renderTexture).")]
     [SerializeField] private Vector2Int outputResolution = new Vector2Int(1920, 1080);
+    [SerializeField] private AudioSource cameraSound;
 
     private Camera _camera;
 
@@ -64,6 +65,9 @@ public class DigitalPhotoCameraController : MonoBehaviour {
         // Force render
         _camera.enabled = true;
         _camera.Render();
+
+        //suena la foto
+        cameraSound.Play();
 
         // Create texture to copy from renderTexture
         Texture2D photo = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);

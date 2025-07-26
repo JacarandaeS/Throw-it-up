@@ -5,10 +5,7 @@ using UnityEngine;
 public class SprayManager : MonoBehaviour {
     public static SprayManager instance;
 
-    [SerializeField] private GameObject skinniCap;
-    // [SerializeField] private GameObject mediumCap;
-    //   [SerializeField] private GameObject biseladoCap;
-    [SerializeField] private GameObject mixerCap;
+    [SerializeField] private List<GameObject> caps;
     [SerializeField] private GameObject crosshairCanvas;
     [SerializeField] private float distance = 2f;
     [SerializeField] private float loweredYAmount = 0.05f;
@@ -20,7 +17,6 @@ public class SprayManager : MonoBehaviour {
     [HideInInspector] public bool raycastEnabled = true;
     [HideInInspector] public Vector3 targetWorldPosition;
 
-    public List<GameObject> aerosoles = new List<GameObject>();
     [HideInInspector] public GameObject currentSpray;
 
     private int currentIndex = 0;
@@ -32,22 +28,23 @@ public class SprayManager : MonoBehaviour {
     private Vector3 targetLocalPosition;
 
     private LayerMask pintableLayer = 8;
+
     void Awake() {
         if (instance == null) {
             instance = this;
         }
 
-        aerosoles.Add(skinniCap);
-       // aerosoles.Add(mediumCap);
-       // aerosoles.Add(biseladoCap);
-        aerosoles.Add(mixerCap);
-
-        foreach (var spray in aerosoles) {
+        foreach (var spray in caps) {
             spray.SetActive(false);
         }
 
-        currentSpray = aerosoles[0];
-        currentSpray.SetActive(true);
+        if (caps.Count > 0) {
+            currentSpray = caps[0];
+            currentSpray.SetActive(true);
+        }
+        else {
+            Debug.LogWarning("No spray caps assigned in the list!");
+        }
     }
 
     void Start() {
@@ -57,21 +54,20 @@ public class SprayManager : MonoBehaviour {
             targetLocalPosition = originalLocalPosition;
         }
     }
+
     void Update() {
-        handleSprayChange(); // ✅ call it here instead of FixedUpdate
+        HandleSprayChange();
+        HandleScrollInput();
     }
 
 
     void FixedUpdate() {
         HandleSprayMovement();
-        
-       // handleSprayChange();
         handleRotation();
 
         if (raycastEnabled) {
             HandleRaycast();
         }
-        
     }
 
     void handleRotation() {
@@ -89,21 +85,18 @@ public class SprayManager : MonoBehaviour {
         }
 
         if (isRotating) {
-            // Smooth rotation
-                currentSpray.transform.localRotation = Quaternion.Lerp(
+            currentSpray.transform.localRotation = Quaternion.Lerp(
                 currentSpray.transform.localRotation,
                 targetRotation,
                 Time.deltaTime * rotationSpeed
             );
 
-            // Smooth vertical movement
-                currentSpray.transform.localPosition = Vector3.Lerp(
+            currentSpray.transform.localPosition = Vector3.Lerp(
                 currentSpray.transform.localPosition,
                 targetLocalPosition,
                 Time.deltaTime * positionLerpSpeed
             );
 
-            // Stop when close enough
             if (Quaternion.Angle(currentSpray.transform.localRotation, targetRotation) < 0.1f &&
                 Vector3.Distance(currentSpray.transform.localPosition, targetLocalPosition) < 0.001f) {
                 isRotating = false;
@@ -111,19 +104,32 @@ public class SprayManager : MonoBehaviour {
         }
     }
 
-    void handleSprayChange() {
+    void HandleSprayChange() {
         if (Input.GetKeyDown(KeyCode.Q)) {
-            currentSpray.SetActive(false);
-            currentIndex = (currentIndex + 1) % aerosoles.Count;
-            currentSpray = aerosoles[currentIndex];
+            if (caps.Count == 0) {
+                Debug.LogWarning("No spray caps available!");
+                return;
+            }
+
+            if (currentSpray != null) {
+                currentSpray.SetActive(false);
+            }
+
+            currentIndex = (currentIndex + 1) % caps.Count;
+            currentSpray = caps[currentIndex];
             currentSpray.SetActive(true);
 
             originalRotation = currentSpray.transform.localRotation;
             originalLocalPosition = currentSpray.transform.localPosition;
             targetLocalPosition = originalLocalPosition;
 
-            Debug.Log("Selected spray: " + currentSpray.name);
-           // Ray cameraRaycast = new Ray();
+            Debug.Log($"Selected spray: {currentSpray.name} (Index: {currentIndex})");
+        }
+    }
+    void HandleScrollInput() {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Mathf.Abs(scroll) > 0.001f) {
+            distance = Mathf.Clamp(distance - scroll * 0.5f, -0.7f, -0.2f);
         }
     }
 
@@ -137,10 +143,7 @@ public class SprayManager : MonoBehaviour {
 
             Paintable p = hitForward.collider.GetComponent<Paintable>();
             if (p != null) {
-                // Position the crosshair slightly in front of the surface (0.01 units)
-                crosshairCanvas.transform.position = hitForward.point + hitForward.normal * .01f;
-                
-
+                crosshairCanvas.transform.position = hitForward.point + hitForward.normal * 0.01f;
                 crosshairCanvas.SetActive(true);
             }
             else {
@@ -160,7 +163,6 @@ public class SprayManager : MonoBehaviour {
 
         screenPosition = Input.mousePosition;
 
-        // Raycast to get depth from a paintable surface
         Ray cameraRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(cameraRay, out RaycastHit camHit, 100f)) {
             Paintable p = camHit.collider.GetComponent<Paintable>();
@@ -174,18 +176,15 @@ public class SprayManager : MonoBehaviour {
         targetWorldPosition = Vector3.Lerp(targetWorldPosition, mouseWorldPosition, Time.deltaTime * smoothSpeed);
         transform.position = targetWorldPosition;
 
-        // **Calculate Y rotation (left/right) based on screen X position**
         float screenWidth = Screen.width;
         float normalizedX = Mathf.Clamp01(screenPosition.x / screenWidth);
-        float targetRotationY = Mathf.Lerp(-45f, 45f, normalizedX);
+        float targetRotationY = Mathf.Lerp(-40f, 40f, normalizedX);
 
-        // **Calculate X rotation (up/down) based on screen Y position**
         float screenHeight = Screen.height;
         float normalizedY = Mathf.Clamp01(screenPosition.y / screenHeight);
         float targetRotationX = Mathf.Lerp(25f, -25f, normalizedY);
 
-        // Apply rotations smoothly, forcing Z = 0
-        Quaternion targetRotation = Quaternion.Euler(targetRotationX, targetRotationY, 0); // Explicitly set Z to 0
+        Quaternion targetRotation = Quaternion.Euler(targetRotationX, targetRotationY, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * smoothSpeed);
     }
 }
