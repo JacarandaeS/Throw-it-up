@@ -54,6 +54,8 @@ public class PaintManager : Singleton<PaintManager> {
     }
 
     public void initTextures(Paintable paintable) {
+        paintable.EnsureInitialized(); // NEW
+
         RenderTexture mask = paintable.getMask();
         RenderTexture maskSuperior = paintable.getMaskSuperior();
         RenderTexture uvIslands = paintable.getUVIslands();
@@ -84,11 +86,12 @@ public class PaintManager : Singleton<PaintManager> {
     public void paint(Paintable paintable, Vector3 pos, float radius = 1f,
                      float hardness = .5f, float strength = .5f,
                      Color? color = null) {
-
         if (paintable == null) {
             Debug.LogWarning("Tried to paint on null Paintable object");
             return;
         }
+
+        paintable.EnsureInitialized(); // NEW
 
         try {
             RenderTexture targetMask = layer2 ? paintable.getMaskSuperior() : paintable.getMask();
@@ -97,7 +100,6 @@ public class PaintManager : Singleton<PaintManager> {
             RenderTexture support = paintable.getSupport();
             Renderer rend = paintable.getRenderer();
 
-            // Paint material setup
             paintMaterial.SetFloat(prepareUVID, 0);
             paintMaterial.SetVector(positionID, pos);
             paintMaterial.SetFloat(hardnessID, hardness);
@@ -107,18 +109,14 @@ public class PaintManager : Singleton<PaintManager> {
             paintMaterial.SetColor(colorID, color ?? Color.red);
             paintMaterial.SetInt(brushModeID, (int)currentBrushMode);
 
-            // Only set brush texture if we're in texture mode
             if (currentBrushMode == BrushMode.Texture && brushTexture != null) {
                 paintMaterial.SetTexture("_BrushTex", brushTexture);
             }
 
-            // Extend material setup
             extendMaterial.SetFloat(uvOffsetID, paintable.extendsIslandOffset);
             extendMaterial.SetTexture(uvIslandsID, uvIslands);
 
-            // Command buffer paint process
             command.Clear();
-
             command.SetRenderTarget(targetMask);
             command.DrawRenderer(rend, paintMaterial, 0);
 
@@ -132,9 +130,9 @@ public class PaintManager : Singleton<PaintManager> {
         }
         catch (System.Exception e) {
             Debug.LogError("Painting error: " + e.Message);
-            return;
         }
     }
+
 
     void OnDestroy() {
         if (command != null) {

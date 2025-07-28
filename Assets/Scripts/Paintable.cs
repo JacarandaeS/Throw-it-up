@@ -30,8 +30,17 @@ public class Paintable : MonoBehaviour {
     private static readonly int ExtendTexID = Shader.PropertyToID("_ExtendTexture");
 
     void Start() {
-        InitializeSystem();
+        //InitializeSystem();
     }
+    public void EnsureInitialized() {
+        if (_texturesInitialized) return;
+
+        rend = GetComponent<Renderer>();
+        InitializeTextures();
+        ApplyTexturesToMaterial();
+        _texturesInitialized = true;
+    }
+
 
     void InitializeSystem() {
         rend = GetComponent<Renderer>();

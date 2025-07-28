@@ -11,9 +11,13 @@ public class CollisionPainter : MonoBehaviour {
         Paintable p = other.collider.GetComponent<Paintable>();
         if (p != null) {
             Vector3 pos = other.contacts[0].point;
+            // Ensure paintable is initialized
+            PaintManager.instance.initTextures(p);
+            // Then paint
             PaintManager.instance.paint(p, pos, radius, hardness, strength, paintColor);
         }
     }
+
     void Update() {
         paintColor = ColorManager.instance.currentColor;
     }

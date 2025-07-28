@@ -288,9 +288,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "b484b8a942904ef085a5f73016aa0f45"
+                    "m_Id": "fd0649bfe0094f3b99ab1014b5f4359a"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 2
             }
         },
         {
@@ -403,20 +403,6 @@
                     "m_Id": "f62dec241b2f41f58ca2ea06b2fb697c"
                 },
                 "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "b484b8a942904ef085a5f73016aa0f45"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "fd0649bfe0094f3b99ab1014b5f4359a"
-                },
-                "m_SlotId": 2
             }
         },
         {
@@ -2083,8 +2069,8 @@
     "m_ObjectId": "76323c6b8d4f4941909a2ea11ff379f9",
     "m_Title": "Ink",
     "m_Position": {
-        "x": -3656.0,
-        "y": -1728.9998779296875
+        "x": -3656.000244140625,
+        "y": -1729.0001220703125
     }
 }
 
