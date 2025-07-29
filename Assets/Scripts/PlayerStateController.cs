@@ -7,17 +7,13 @@ public class PlayerStateController : MonoBehaviour {
     [SerializeField] private CinemachineCamera camara1;
     [SerializeField] private GameObject activePainter;
     [SerializeField] private GameObject photocamera;
-    //[SerializeField] private GameObject CrosshairCanvas;
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject colorPickerCanvas;
     [SerializeField] private TextMeshProUGUI textMeshPro;
 
-
-
     private bool isPainterActive = true;
     private bool isCameraActive = false;
     private bool isFreeLookActive = false;
-    private bool isCanvasActive = true;
     private MouseLook mouseLook;
     private Quaternion originalCamRotation;
 
@@ -66,16 +62,12 @@ public class PlayerStateController : MonoBehaviour {
             else {
                 colorPickerCanvas.SetActive(false);
             }
-        }
-     
-            
-        }
+        }   
+    }
 
     void enableFreelook() {
-        // Disable the painter
         activePainter.SetActive(false);
         crosshair.SetActive(false);
-        // CrosshairCanvas.SetActive(false);
         isPainterActive = false;
 
         if (mouseLook != null) {
@@ -87,7 +79,6 @@ public class PlayerStateController : MonoBehaviour {
     void enablePainter() {
         activePainter.SetActive(true);
         crosshair.SetActive(true);
-        //  CrosshairCanvas.SetActive(true);
         isPainterActive = true;
 
         if (mouseLook != null) {
@@ -103,8 +94,6 @@ public class PlayerStateController : MonoBehaviour {
 
             if (!isFreeLookActive && isCameraActive == false) {
                 enableFreelook();
-                //photocamera.SetActive(true);
-                //isCameraActive = true;
             }
 
             if (!isCameraActive) {

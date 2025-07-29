@@ -761,7 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &42288787
 MeshCollider:
@@ -5795,7 +5795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!4 &253170594 stripped
 Transform:
@@ -8609,7 +8609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!1 &369955559
 GameObject:
@@ -15328,7 +15328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &645680766
 MeshCollider:
@@ -15474,6 +15474,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4c97395eef7989b45ad1acabf1bfafb6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4c97395eef7989b45ad1acabf1bfafb6, type: 3}
+      propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4c97395eef7989b45ad1acabf1bfafb6, type: 3}
@@ -19969,7 +19973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &821537831
 MeshCollider:
@@ -23900,7 +23904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1014454878
 MeshCollider:
@@ -25618,7 +25622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1110147065
 MeshCollider:
@@ -28590,7 +28594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1211956041
 MeshCollider:
@@ -29352,7 +29356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1250820487
 MeshCollider:
@@ -31540,7 +31544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 1
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1367727457
 MeshCollider:
@@ -32013,8 +32017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
-  isWider: 0
-  autoSaveTexture: 1
+  isWider: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!4 &1389488948 stripped
 Transform:
@@ -32571,7 +32575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 1
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1420220816
 MeshCollider:
@@ -34692,7 +34696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1513189804
 MeshCollider:
@@ -35618,7 +35622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TEXTURE_SIZE: 1024
   isWider: 0
-  autoSaveTexture: 1
+  autoSaveTexture: 0
   extendsIslandOffset: 1
 --- !u!64 &1545893052
 MeshCollider:
@@ -39576,7 +39580,7 @@ Transform:
   m_GameObject: {fileID: 1745914929}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.9171, y: 3.8258, z: 0.6835995}
+  m_LocalPosition: {x: 57.92, y: 3.87, z: 0.6835995}
   m_LocalScale: {x: 4.0784936, y: 1, z: 3.7062604}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47199,11 +47203,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558490, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558491, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: size
-      value: 0.06
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558491, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: hardness
@@ -47211,7 +47215,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558491, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: strength
-      value: 0.03
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407660079294558491, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
+      propertyPath: paintColor.b
+      value: 0.13243146
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407660079294558491, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
+      propertyPath: paintColor.g
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407660079294558491, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
+      propertyPath: paintColor.r
+      value: 0.15972683
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558492, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: m_MaxParticleSize
@@ -47239,11 +47255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558493, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558493, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: ShapeModule.arc.speed.scalar
-      value: 12
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558493, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -47255,7 +47271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558493, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 100
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 3407660079294558493, guid: 29131ec209b02d44b8445f938625ae85, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -50510,32 +50526,64 @@ PrefabInstance:
     m_TransformParent: {fileID: 68398256}
     m_Modifications:
     - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: simulationSpeed
-      value: 20
+      value: 4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: ShapeModule.arc.mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: CollisionModule.quality
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: ShapeModule.arc.speed.scalar
-      value: 3.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 40
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610914, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.015686275
       objectReference: {fileID: 0}
     - target: {fileID: 1714552886935610916, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: size
-      value: 0.07
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610916, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: hardness
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1714552886935610916, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: strength
-      value: 0.06
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1714552886935610917, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: m_Name
       value: ParticulasSkinny
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714552886935610917, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1714552887584139474, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: maxAmount
@@ -50587,7 +50635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1714552887584139477, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107985234958780264, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
