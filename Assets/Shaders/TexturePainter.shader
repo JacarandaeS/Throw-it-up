@@ -96,6 +96,8 @@
                 // 🔁 CAMBIADO: premultiplicación correcta
                 float4 paintColor = _PainterColor;
                 paintColor.rgb *= paintColor.a; // premultiply RGB
+                float gray = dot(paintColor.rgb, float3(0.3, 0.59, 0.11)); // Luminance
+                paintColor.rgb = lerp(gray.xxx, paintColor.rgb, 0.8); // Reduce saturation to 80%
 
                 // 🔁 CAMBIADO: mezcla sobre base usando transparencia
                 float4 finalColor = lerp(baseColor, paintColor, falloffFactor);
