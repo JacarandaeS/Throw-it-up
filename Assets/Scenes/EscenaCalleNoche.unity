@@ -6770,8 +6770,12 @@ MonoBehaviour:
   image: {fileID: 762005061}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   layerText: {fileID: 963828305}
   CapText: {fileID: 1447725051}
+=======
+  textMeshPro: {fileID: 963828305}
+>>>>>>> parent of c1fac24 (last)
 =======
   textMeshPro: {fileID: 963828305}
 >>>>>>> parent of c1fac24 (last)
@@ -39342,6 +39346,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 8b2bceefb7322c442bbdaa710eaa64f8, type: 3}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &1740857721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39453,6 +39458,8 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 91057293}
   m_SourcePrefab: {fileID: 100100000, guid: cded108dbaa11ed49a87414cc0c269da, type: 3}
+=======
+>>>>>>> parent of c1fac24 (last)
 =======
 >>>>>>> parent of c1fac24 (last)
 =======
@@ -42003,6 +42010,7 @@ Light:
   m_EnableSpotReflector: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &1886956932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42098,6 +42106,8 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1698799379}
   m_SourcePrefab: {fileID: 100100000, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
+=======
+>>>>>>> parent of c1fac24 (last)
 =======
 >>>>>>> parent of c1fac24 (last)
 =======

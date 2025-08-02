@@ -79,7 +79,11 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
         var shape = sprayParticles.shape;
         shape.angle = angle;
 
+<<<<<<< HEAD
 
+=======
+        Debug.Log("Updated angle: " + angle);
+>>>>>>> parent of c1fac24 (last)
     }
 
     //void HandleAmountChange() {
