@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private float cameraSpeed = 0.1f;
     [SerializeField] private GameObject activeCans;
     [SerializeField] private GameObject optionObject;
-    [SerializeField] private GameObject photocamera;
     //[SerializeField] private GameObject colorPickerCanvas;
    // private bool TopLayerPainting = true;
 
@@ -45,9 +44,6 @@ public class GameManager : MonoBehaviour {
             isTurnedOn = !isTurnedOn;
             optionScreen.SetActive(isTurnedOn);
             activeCans.SetActive(!isTurnedOn);
-            if (photocamera.activeInHierarchy) {
-                photocamera.SetActive(false);
-            }
         }
 
        
@@ -55,9 +51,9 @@ public class GameManager : MonoBehaviour {
 
     public void Quit() {
         Debug.Log("Quitting the game...");
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#endif
         Application.Quit();
     }
 

@@ -10,7 +10,7 @@ public class PlayerStateController : MonoBehaviour {
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject colorPickerCanvas;
     [SerializeField] private TextMeshProUGUI textMeshPro;
-    
+
     private bool isPainterActive = true;
     private bool isCameraActive = false;
     private bool isFreeLookActive = false;

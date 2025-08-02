@@ -3,11 +3,9 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Camera))]
 public class DigitalPhotoCameraController : MonoBehaviour {
-
     [Header("Zoom Settings")]
     [SerializeField] private float fieldOfViewDifference = 5f;
     [SerializeField] private float minFOV = 15f;
@@ -15,14 +13,10 @@ public class DigitalPhotoCameraController : MonoBehaviour {
 
     [Header("Photo Settings")]
     [SerializeField] private RenderTexture renderTexture;
-    
     [Tooltip("Resolution to save as PNG (should match renderTexture).")]
     [SerializeField] private Vector2Int outputResolution = new Vector2Int(1920, 1080);
     [SerializeField] private AudioSource cameraSound;
-    
-    [Header("Volume PostPross")]
-    [SerializeField] private Volume volume;
-    
+
     private Camera _camera;
 
     void Start() {

@@ -57,6 +57,7 @@ public class SprayManager : MonoBehaviour {
 
     void Update() {
         HandleSprayChange();
+        HandleScrollInput();
     }
 
 
@@ -123,6 +124,12 @@ public class SprayManager : MonoBehaviour {
             targetLocalPosition = originalLocalPosition;
 
             Debug.Log($"Selected spray: {currentSpray.name} (Index: {currentIndex})");
+        }
+    }
+    void HandleScrollInput() {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Mathf.Abs(scroll) > 0.001f) {
+            distance = Mathf.Clamp(distance - scroll * 0.5f, -0.7f, -0.2f);
         }
     }
 
