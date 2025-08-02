@@ -39,7 +39,7 @@ public class ColorManager : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i)) {
                 currentIndex = i;
                 currentColor = palette[i];
-                Debug.Log("Selected color: " + currentColor);
+                //Debug.Log("Selected color: " + currentColor);
             }
         }
     }

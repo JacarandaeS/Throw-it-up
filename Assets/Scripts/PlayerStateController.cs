@@ -90,7 +90,7 @@ public class PlayerStateController : MonoBehaviour {
 
     void HandlePhotoCameraEnable() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("is free look active: " + isFreeLookActive);
+            //Debug.Log("is free look active: " + isFreeLookActive);
 
             if (!isFreeLookActive && isCameraActive == false) {
                 enableFreelook();
