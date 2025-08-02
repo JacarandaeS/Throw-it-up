@@ -86,7 +86,7 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
         angle = Mathf.Clamp(angle, 5f, 65f);
         var shape = sprayParticles.shape;
         shape.angle = angle;
-        Debug.Log("Updated angle: " + angle);
+       // Debug.Log("Updated angle: " + angle);
     }
 
     void SetSphericalDirectionAmount(float value) {

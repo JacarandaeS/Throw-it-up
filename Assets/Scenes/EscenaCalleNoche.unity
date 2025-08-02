@@ -4185,7 +4185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &198563373
 Transform:
   m_ObjectHideFlags: 0
@@ -4350,7 +4350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &199410033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6880,7 +6880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 762005061}
-  layerText: {fileID: 0}
+  layerText: {fileID: 963828305}
   CapText: {fileID: 1447725051}
 --- !u!114 &305538583
 MonoBehaviour:
@@ -11641,7 +11641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &498294480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19680,6 +19680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: camioncito
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 025f5d08b5f43b14b88a6d903a48d670, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6199101461036415658, guid: 025f5d08b5f43b14b88a6d903a48d670, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -19971,6 +19975,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
       propertyPath: m_Name
       value: ModuloBlancopizamodelo (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20595,6 +20603,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
       propertyPath: m_Name
       value: ModuloBlancopizamodelo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -25233,7 +25245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1091993920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25593,6 +25605,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8fffd1a3ffbafa348892ef41304be622, type: 3}
       propertyPath: m_Name
       value: Garbage Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8fffd1a3ffbafa348892ef41304be622, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9190518895744340842, guid: 8fffd1a3ffbafa348892ef41304be622, type: 3}
       propertyPath: m_LocalScale.x
@@ -27608,7 +27624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1188358901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35346,7 +35362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1522203312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35577,7 +35593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1528846880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38537,7 +38553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1670922565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39789,6 +39805,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cded108dbaa11ed49a87414cc0c269da, type: 3}
       propertyPath: m_Name
       value: PortonLugeModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cded108dbaa11ed49a87414cc0c269da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: cded108dbaa11ed49a87414cc0c269da, type: 3}
       propertyPath: m_LocalScale.x
@@ -42365,6 +42385,10 @@ PrefabInstance:
       value: ModuloBlancopizamodelo (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 14ff46223500d3c49bf7411ec1ae0aa2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -42766,7 +42790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1922959546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43743,7 +43767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1989655464
 Transform:
   m_ObjectHideFlags: 0
@@ -44703,7 +44727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2048111199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46071,7 +46095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2096733548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46401,7 +46425,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106571608}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c3ea44eef20b0b4396ebe666c9a6eeb, type: 3}
   m_Name: 
@@ -46427,7 +46451,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -47005,6 +47029,10 @@ PrefabInstance:
     - target: {fileID: 2821510811952048078, guid: f8e57d98ec21c40488b6f3b334826c2b, type: 3}
       propertyPath: m_Name
       value: PosteDeluz (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821510811952048078, guid: f8e57d98ec21c40488b6f3b334826c2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4266070881749824901, guid: f8e57d98ec21c40488b6f3b334826c2b, type: 3}
       propertyPath: m_BoundingSphereOverride.w

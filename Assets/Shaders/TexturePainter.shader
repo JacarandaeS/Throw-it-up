@@ -60,7 +60,9 @@
                 float dist = distance(center.xy, position.xy);
                 return saturate(1.0 - smoothstep(radius * hardness, radius, dist));
             }
+           
 
+           // windows
             v2f vert(appdata v) 
             {
                 v2f o;
