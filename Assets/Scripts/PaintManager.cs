@@ -38,6 +38,7 @@ public class PaintManager : Singleton<PaintManager> {
         paintMaterial = new Material(texturePaint);
         extendMaterial = new Material(extendIslands);
         command = new CommandBuffer { name = "CommandBuffer - " + gameObject.name };
+        //currentBrushMode = BrushMode.Circle;
     }
 
     void Update() {
