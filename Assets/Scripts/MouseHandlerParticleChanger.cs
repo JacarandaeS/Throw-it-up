@@ -5,42 +5,41 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
     [SerializeField] ParticleSystem sprayParticles;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip spraySound;
-    
+   // [SerializeField] private ParticlesController particlesController;
 
     private bool pinturaActiva = false;
-    public float baseAmount = 0f;
-    public float maxAmount = 0.3f;
-    private float currentAmount;
     private float returnTimer = 0f;
     private bool isReturning = false;
     private float angle;
+    public bool changeAngle = true;
+    private ParticlesController particlesController;
 
     private void Start() {
         if (sprayParticles == null) {
             sprayParticles = GetComponentInChildren<ParticleSystem>();
         }
-        angle = sprayParticles.shape.angle;
-        currentAmount = baseAmount;
-        SetSphericalDirectionAmount(currentAmount);
 
-        // Asegurarse de que arranca desactivado
+        if (particlesController == null && sprayParticles != null) {
+            particlesController = sprayParticles.GetComponent<ParticlesController>();
+        }
+
+        angle = sprayParticles.shape.angle;
         sprayParticles.gameObject.SetActive(false);
     }
 
+
     private void FixedUpdate() {
-        //HandleAmountChange();
-        handleAngleChange();
-
-
+        if (changeAngle) {
+            handleAngleChange();
+        }
     }
 
     void Update() {
         HandleOnOff();
-        
+        HandleScroll();
     }
 
     void HandleOnOff() {
-        // Actualizar color del spray si hay un ColorManager
         if (ColorManager.instance != null && sprayParticles != null) {
             var main = sprayParticles.main;
             main.startColor = ColorManager.instance.currentColor;
@@ -65,6 +64,17 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
             }
         }
     }
+
+    void HandleScroll() {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0f) {
+            particlesController?.SizeUp();
+        }
+        else if (scroll < 0f) {
+            particlesController?.SizeDown();
+        }
+    }
+
     void handleAngleChange() {
         if (Input.GetKey(KeyCode.LeftControl)) {
             angle += 3f;
@@ -73,46 +83,11 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
             angle -= 3f;
         }
 
-        // Limitar entre 5 y 60 grados
         angle = Mathf.Clamp(angle, 5f, 65f);
-
         var shape = sprayParticles.shape;
         shape.angle = angle;
-
-<<<<<<< HEAD
-
-=======
         Debug.Log("Updated angle: " + angle);
->>>>>>> parent of c1fac24 (last)
     }
-
-    //void HandleAmountChange() {
-    //    if (Input.GetKey(KeyCode.LeftControl)) {
-    //        isReturning = false;
-    //        returnTimer = 0f;
-
-    //        currentAmount = Mathf.MoveTowards(currentAmount, maxAmount, Time.deltaTime * 2f);
-    //        SetSphericalDirectionAmount(currentAmount);
-    //    }
-    //    else {
-    //        if (currentAmount > baseAmount) {
-    //            isReturning = true;
-    //        }
-
-    //        if (isReturning) {
-    //            returnTimer += Time.deltaTime;
-    //            float t = Mathf.Clamp01(returnTimer / 3f);
-    //            currentAmount = Mathf.Lerp(currentAmount, baseAmount, t);
-    //            SetSphericalDirectionAmount(currentAmount);
-
-    //            if (Mathf.Abs(currentAmount - baseAmount) < 0.01f) {
-    //                currentAmount = baseAmount;
-    //                isReturning = false;
-    //                returnTimer = 0f;
-    //            }
-    //        }
-    //    }
-    //}
 
     void SetSphericalDirectionAmount(float value) {
         var shape = sprayParticles.shape;

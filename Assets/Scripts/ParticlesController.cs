@@ -4,17 +4,18 @@ using UnityEngine;
 public class ParticlesController : MonoBehaviour {
     [Header("Paint Settings")]
     public Color paintColor;
-    public float minRadius = 0.05f;
-    public float maxRadius = 0.2f;
     public float strength = 1;
     public float hardness = 1;
     public float size = 1;
+
+    [SerializeField] private float MaxSize;
+    [SerializeField] private float MinSize;
 
 
 
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents;
-
+   
     void Start() {
         part = GetComponent<ParticleSystem>();
         collisionEvents = new List<ParticleCollisionEvent>();
@@ -45,7 +46,21 @@ public class ParticlesController : MonoBehaviour {
         paintColor = ColorManager.instance.currentColor;
 
     }
+    public void SizeUp() {
+        if(size < MaxSize) {
+         size += 0.02f;
 
+        }
+        return;
+    }
+    public void SizeDown() {
+        if (size > MinSize) {
+            size -= 0.02f;
 
-
+        }
+        return;
+    }
 }
+
+
+

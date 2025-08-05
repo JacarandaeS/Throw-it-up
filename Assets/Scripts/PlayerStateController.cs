@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class PlayerStateController : MonoBehaviour {
     [SerializeField] private CinemachineCamera camara1;
@@ -10,12 +11,14 @@ public class PlayerStateController : MonoBehaviour {
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject colorPickerCanvas;
     [SerializeField] private TextMeshProUGUI textMeshPro;
-
+    
     private bool isPainterActive = true;
     private bool isCameraActive = false;
     private bool isFreeLookActive = false;
     private MouseLook mouseLook;
     private Quaternion originalCamRotation;
+
+    public event EventHandler OnCameraOpen;
 
     void Start() {
         if (camara1 != null) {
@@ -74,6 +77,9 @@ public class PlayerStateController : MonoBehaviour {
             originalCamRotation = camara1.transform.rotation; // store current rotation
             mouseLook.enabled = true;
             isFreeLookActive = true;
+
+            Cursor.lockState = CursorLockMode.Locked;
+           // Cursor.visible = false;
         }
     }
     void enablePainter() {
@@ -85,18 +91,22 @@ public class PlayerStateController : MonoBehaviour {
             mouseLook.enabled = false;
             isFreeLookActive = false;
             camara1.transform.rotation = originalCamRotation; // reset rotation
+
+            Cursor.lockState = CursorLockMode.None;
+           // Cursor.visible = true;
         }
     }
 
     void HandlePhotoCameraEnable() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            //Debug.Log("is free look active: " + isFreeLookActive);
+            Debug.Log("is free look active: " + isFreeLookActive);
 
             if (!isFreeLookActive && isCameraActive == false) {
                 enableFreelook();
             }
 
             if (!isCameraActive) {
+                OnCameraOpen?.Invoke(this, EventArgs.Empty);
                 photocamera.SetActive(true);
                 isCameraActive = true;
             }
