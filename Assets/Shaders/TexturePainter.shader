@@ -7,6 +7,7 @@
         [Enum(Main,0,Superior,1)] _MaskType ("Mask Type", Int) = 0
         [Enum(Circle, 0, Square, 1, Texture, 2)] _BrushMode ("Brush Mode", Int) = 0
         _BrushTex ("Brush Texture", 2D) = "white" {}
+        _BrushSize ("Brush Size", Vector) = (1,1,0,0)
     }
 
     SubShader 
@@ -17,7 +18,6 @@
         ZWrite Off
         ZTest Off
 
-        // 🔁 CAMBIADO: blending tradicional con alpha
         Blend SrcAlpha OneMinusSrcAlpha
 
         Pass 
@@ -40,14 +40,14 @@
             int _MaskType;
             int _BrushMode;
             sampler2D _BrushTex;
-            float2 _BrushSize; 
+            float4 _BrushSize;
 
             struct appdata 
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
-      
+
             struct v2f 
             {
                 float4 vertex : SV_POSITION;
@@ -59,6 +59,26 @@
             {
                 float dist = distance(center.xy, position.xy);
                 return saturate(1.0 - smoothstep(radius * hardness, radius, dist));
+            }
+
+            float squareMask(float3 position, float3 center, float2 size, float hardness) 
+            {
+                float2 offset = position.xy - center.xy;
+                float2 dist = abs(offset) / (size * 0.5);
+                float maxDist = max(dist.x, dist.y);
+                return saturate(1.0 - smoothstep(hardness, 1.0, maxDist));
+            }
+
+            float textureMask(float3 position, float3 center, float radius, sampler2D brushTex)
+            {
+                float2 offset = (position.xy - center.xy) / radius;
+                offset = offset * 0.5 + 0.5;
+
+                if (offset.x < 0.0 || offset.x > 1.0 || offset.y < 0.0 || offset.y > 1.0)
+                    return 0.0;
+
+                float4 brushSample = tex2D(brushTex, offset);
+                return brushSample.a;
             }
 
             v2f vert(appdata v) 
@@ -76,37 +96,41 @@
                 return o;
             }
 
-            fixed4 frag(v2f i) : SV_Target 
-            {
-                float4 baseColor = tex2D(_MainTex, i.uv);
+        fixed4 frag(v2f i) : SV_Target 
+        {
+            float4 baseColor = tex2D(_MainTex, i.uv);
+            float influence = 0;
 
-                float influence = 0;
-
-                if (_BrushMode == 0)
-                {
-                    float falloff = circleMask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
-                    falloff = pow(falloff, 2.5);
-                    influence = saturate(falloff * _Strength);
-                }
-
-                float falloffFactor = pow(influence, 0.9);
-                if (falloffFactor < 0.01)
-                    discard;
-
-                // 🔁 CAMBIADO: premultiplicación correcta
-                float4 paintColor = _PainterColor;
-                paintColor.rgb *= paintColor.a; // premultiply RGB
-                float gray = dot(paintColor.rgb, float3(0.3, 0.59, 0.11)); // Luminance
-                paintColor.rgb = lerp(gray.xxx, paintColor.rgb, 0.8); // Reduce saturation to 80%
-
-                // 🔁 CAMBIADO: mezcla sobre base usando transparencia
-                float4 finalColor = lerp(baseColor, paintColor, falloffFactor);
-
-                // opcional: descartar píxeles completamente transparentes
-                if (finalColor.a < 0.01) discard;
-
-                return finalColor;
+            if (_BrushMode == 0) {
+                float falloff = circleMask(i.worldPos.xyz, _PainterPosition, _Radius, _Hardness);
+                falloff = pow(falloff, 2.5);
+                influence = saturate(falloff * _Strength);
+            } 
+            else if (_BrushMode == 1) {
+                float falloff = squareMask(i.worldPos.xyz, _PainterPosition, _BrushSize.xy, _Hardness);
+                falloff = pow(falloff, 2.5);
+                influence = saturate(falloff * _Strength);
+            } 
+            else if (_BrushMode == 2) {
+                float texVal = textureMask(i.worldPos.xyz, _PainterPosition, _Radius, _BrushTex);
+                influence = saturate(texVal * _Strength);
             }
+
+            float falloffFactor = pow(influence, 0.9);
+            if (falloffFactor < 0.01)
+                discard;
+
+            float4 paintColor = _PainterColor;
+            paintColor.rgb *= paintColor.a;
+            float gray = dot(paintColor.rgb, float3(0.3, 0.59, 0.11));
+            paintColor.rgb = lerp(gray.xxx, paintColor.rgb, 0.8);
+
+            float4 finalColor = lerp(baseColor, paintColor, falloffFactor);
+            if (finalColor.a < 0.01) discard;
+
+            return finalColor;
+        }
+
             ENDCG
         }
     }

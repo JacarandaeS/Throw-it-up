@@ -53,7 +53,12 @@ public class SprayManager : MonoBehaviour {
             originalLocalPosition = currentSpray.transform.localPosition;
             targetLocalPosition = originalLocalPosition;
         }
+        PaintManager.instance.currentBrushMode = PaintManager.BrushMode.Circle;
+
     }
+    //private void OnEnable() {
+    //    PaintManager.instance.currentBrushMode = PaintManager.BrushMode.Circle;
+    //}
 
     void Update() {
         HandleSprayChange();

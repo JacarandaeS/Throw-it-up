@@ -16,6 +16,10 @@ public class MousePainter : MonoBehaviour {
 
     void Start() {
         originalRadius = radius; // Initialize the original radius
+        
+    }
+    private void OnEnable() {
+        PaintManager.instance.currentBrushMode = PaintManager.BrushMode.Texture;
     }
 
     void Update() {
