@@ -1481,7 +1481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &68398256
 Transform:
   m_ObjectHideFlags: 0
@@ -1500,6 +1500,7 @@ Transform:
   - {fileID: 2116509996}
   - {fileID: 636598189}
   - {fileID: 736709165}
+  - {fileID: 1989655464}
   m_Father: {fileID: 218130185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &68398257
@@ -1518,6 +1519,7 @@ MonoBehaviour:
   - {fileID: 531277807}
   - {fileID: 636598188}
   - {fileID: 736709164}
+  - {fileID: 1989655463}
   crosshairCanvas: {fileID: 1541971107}
   distance: -0.7
   loweredYAmount: 0.05
@@ -5024,7 +5026,6 @@ Transform:
   - {fileID: 68398256}
   - {fileID: 1125503650}
   - {fileID: 16613391}
-  - {fileID: 1989655464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &222439665 stripped
@@ -11770,7 +11771,6 @@ GameObject:
   m_Component:
   - component: {fileID: 506090829}
   - component: {fileID: 506090828}
-  - component: {fileID: 506090830}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11813,18 +11813,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &506090830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506090827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d511a06dfcb49c45b2b5926b507248a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &506738516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24974,7 +24962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c7628c5f5827f147a62df5fe864ced0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c7628c5f5827f147a62df5fe864ced0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43827,13 +43815,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989655463}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.27, y: 0.77, z: -5.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1524496611}
-  m_Father: {fileID: 218130185}
+  m_Father: {fileID: 68398256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1989655465
 MonoBehaviour:
@@ -43849,7 +43837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 960427824}
   mouseSingleClick: 0
-  radius: 0.8
+  radius: 0.7
   strength: 1
   hardness: 1
 --- !u!1 &1991341481
@@ -51254,7 +51242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1714552887584139477, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107985234958780264, guid: 790464e8d88afd54db76195aaabe35a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
