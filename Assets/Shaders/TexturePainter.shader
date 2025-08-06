@@ -69,9 +69,14 @@
                 return saturate(1.0 - smoothstep(hardness, 1.0, maxDist));
             }
 
-            float textureMask(float3 position, float3 center, float radius, sampler2D brushTex)
+         float textureMask(float3 position, float3 center, float radius, sampler2D brushTex)
             {
                 float2 offset = (position.xy - center.xy) / radius;
+
+                // Apply aspect ratio scaling
+                offset.x *= 0.75; // Stretch horizontally (make it wider)
+                offset.y *= 1.5; // Optional: compress vertically (make it shorter)
+
                 offset = offset * 0.5 + 0.5;
 
                 if (offset.x < 0.0 || offset.x > 1.0 || offset.y < 0.0 || offset.y > 1.0)

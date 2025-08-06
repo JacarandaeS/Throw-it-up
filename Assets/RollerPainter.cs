@@ -35,56 +35,58 @@ public class RollerPainter : MonoBehaviour {
         paintColor = ColorManager.instance.currentColor;
         bool click = mouseSingleClick ? Input.GetMouseButtonDown(0) : Input.GetMouseButton(0);
 
+        // 1) Always cast a ray from the mouse and move this GameObject there:
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 300f)) {
+            transform.position = hit.point - new Vector3(0,0,0.1f);
+        }
+
+        // 2) Dynamically scale radius based on strength
         radius = Mathf.Lerp(0.4f, originalRadius, strength / originalStrength);
 
-
+        // 3) Painting logic
         if (click) {
-            // Decrease strength while holding mouse
+            // drain strength
             strength -= Time.deltaTime * 0.3f;
             strength = Mathf.Max(strength, 0.1f);
 
             restoringStrength = false;
             strengthRestoreTimer = 0f;
 
-            Vector3 position = Input.mousePosition;
-            Ray ray = cam.ScreenPointToRay(position);
-            RaycastHit hit;
+            if (hit.collider != null) {
+                var p = hit.collider.GetComponent<Paintable>();
+                if (p != null) {
+                    Vector3 currentPos = hit.point;
 
-            if (Physics.Raycast(ray, out hit, 300.0f)) {
-                Paintable p = hit.collider.GetComponent<Paintable>();
-                if (p == null) return;
-
-                Vector3 currentPos = hit.point;
-
-                if (lastPaintPos == null || mouseSingleClick) {
-                    PaintManager.instance.paint(p, currentPos, radius, hardness, strength, paintColor);
-                    lastPaintPos = currentPos;
-                }
-                else {
-                    float dist = Vector3.Distance(lastPaintPos.Value, currentPos);
-                    float step = Mathf.Max(0.05f, radius * 0.3f);
-                    int steps = Mathf.Clamp(Mathf.CeilToInt(dist / step), 1, 100);
-
-                    for (int i = 0; i <= steps; i++) {
-                        Vector3 lerpPos = Vector3.Lerp(lastPaintPos.Value, currentPos, (float)i / steps);
-                        PaintManager.instance.paint(p, lerpPos, radius, hardness, strength, paintColor);
+                    if (lastPaintPos == null || mouseSingleClick) {
+                        PaintManager.instance.paint(p, currentPos, radius, hardness, strength, paintColor);
+                        lastPaintPos = currentPos;
                     }
+                    else {
+                        float dist = Vector3.Distance(lastPaintPos.Value, currentPos);
+                        float step = Mathf.Max(0.05f, radius * 0.3f);
+                        int steps = Mathf.Clamp(Mathf.CeilToInt(dist / step), 1, 100);
 
-                    lastPaintPos = currentPos;
+                        for (int i = 0; i <= steps; i++) {
+                            Vector3 lerpPos = Vector3.Lerp(lastPaintPos.Value, currentPos, (float)i / steps);
+                            PaintManager.instance.paint(p, lerpPos, radius, hardness, strength, paintColor);
+                        }
+                        lastPaintPos = currentPos;
+                    }
                 }
             }
         }
         else {
             lastPaintPos = null;
-
-            // Start restoring strength after releasing click
+            // start restoring strength
             if (!restoringStrength && strength < originalStrength) {
                 restoringStrength = true;
                 strengthRestoreTimer = 0f;
             }
         }
 
-        // Smoothly restore strength over time
+        // 4) Smoothly restore strength (and radius by extension)
         if (restoringStrength) {
             strengthRestoreTimer += Time.deltaTime;
             float t = strengthRestoreTimer / strengthRestoreDuration;
