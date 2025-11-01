@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 
 public class PaintManager : Singleton<PaintManager> {
@@ -9,6 +9,9 @@ public class PaintManager : Singleton<PaintManager> {
     [Header("Layer Toggle")]
     public bool layer2 = false;
     [SerializeField] private Texture2D brushTexture;
+
+   
+
 
 
     // Brush modes
@@ -35,11 +38,25 @@ public class PaintManager : Singleton<PaintManager> {
 
     public override void Awake() {
         base.Awake();
+
+        if (texturePaint == null) {
+            texturePaint = Shader.Find("TNTC/TexturePainter"); // exact shader path in your project
+            if (texturePaint == null)
+                Debug.LogError("PaintManager: Could not find 'TNTC/TexturePainter' shader!");
+        }
+
+        if (extendIslands == null) {
+            extendIslands = Shader.Find("TNTC/ExtendIslands"); // adjust if different
+            if (extendIslands == null)
+                Debug.LogError("PaintManager: Could not find 'TNTC/ExtendIslands' shader!");
+        }
+
         paintMaterial = new Material(texturePaint);
         extendMaterial = new Material(extendIslands);
+
         command = new CommandBuffer { name = "CommandBuffer - " + gameObject.name };
-        //currentBrushMode = BrushMode.Circle;
     }
+
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.L)) {
@@ -52,6 +69,8 @@ public class PaintManager : Singleton<PaintManager> {
             currentBrushMode = (BrushMode)(((int)currentBrushMode + 1) % 3);
             Debug.Log("Brush mode changed to: " + currentBrushMode.ToString());
         }
+
+        
     }
 
     public void initTextures(Paintable paintable) {
@@ -140,4 +159,6 @@ public class PaintManager : Singleton<PaintManager> {
             command.Release();
         }
     }
+
+   
 }

@@ -25,7 +25,6 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
 
         angle = sprayParticles.shape.angle;
         sprayParticles.gameObject.SetActive(false);
-       // PaintManager.instance.currentBrushMode = PaintManager.BrushMode.Circle;
     }
 
 
@@ -35,7 +34,7 @@ public class MouseHandlerParticleChanger : MonoBehaviour {
         }
     }
 
-    void Update() {
+    void Update() { 
         HandleOnOff();
         HandleScroll();
     }

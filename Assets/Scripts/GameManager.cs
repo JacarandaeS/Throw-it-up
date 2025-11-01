@@ -9,10 +9,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private float smoothSpeed = 8f;
     [SerializeField] private float cameraSpeed = 0.1f;
     [SerializeField] private GameObject activeCans;
-    [SerializeField] private GameObject optionObject;
     [SerializeField] private GameObject photocamera;
-    //[SerializeField] private GameObject colorPickerCanvas;
-   // private bool TopLayerPainting = true;
 
     private bool isTurnedOn = false;
 

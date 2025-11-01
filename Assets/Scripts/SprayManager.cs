@@ -45,7 +45,6 @@ public class SprayManager : MonoBehaviour {
         else {
             Debug.LogWarning("No spray caps assigned in the list!");
         }
-        //PaintManager.instance.currentBrushMode = PaintManager.BrushMode.Circle;
     }
 
     void Start() {
@@ -57,11 +56,7 @@ public class SprayManager : MonoBehaviour {
         caps[0].SetActive(true);
 
     }
-    //private void OnEnable() {
-    //    if (PaintManager.instance != null) {
-    //        PaintManager.instance.currentBrushMode = PaintManager.BrushMode.Circle;
-    //    }
-    //}
+   
 
     void Update() {
         HandleSprayChange();

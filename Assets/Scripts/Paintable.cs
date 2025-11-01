@@ -52,7 +52,7 @@ public class Paintable : MonoBehaviour {
         if (_texturesInitialized) return;
 
         int width = TEXTURE_SIZE;
-        int height = isWider ? TEXTURE_SIZE / 2 : TEXTURE_SIZE;
+        int height = isWider ? TEXTURE_SIZE * 2 : TEXTURE_SIZE;
         var format = RenderTextureFormat.ARGB32;
 
         maskRenderTexture = CreateRenderTexture(width, height, format);

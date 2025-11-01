@@ -1,16 +1,20 @@
+﻿using System.Data.Common;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
-public class Singleton<T> : MonoBehaviour where T: MonoBehaviour{
-    
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
+
     public static bool verbose = false;
     public static bool keepAlive = true;
 
+
+
     private static T _instance = null;
     public static T instance {
-        get { 
-            if(_instance == null){
+        get {
+            if (_instance == null) {
                 _instance = GameObject.FindAnyObjectByType<T>();
-                if(_instance == null){
+                if (_instance == null) {
                     var singletonObj = new GameObject();
                     singletonObj.name = typeof(T).ToString();
                     _instance = singletonObj.AddComponent<T>();
@@ -20,31 +24,31 @@ public class Singleton<T> : MonoBehaviour where T: MonoBehaviour{
         }
     }
 
-    static public bool isInstanceAlive{
+    static public bool isInstanceAlive {
         get { return _instance != null; }
     }
 
-    public virtual void Awake(){
-        if (_instance != null){
-            if(verbose)
+    public virtual void Awake() {
+        if (_instance != null) {
+            if (verbose)
                 Debug.Log("SingleAccessPoint, Destroy duplicate instance " + name + " of " + instance.name);
             Destroy(gameObject);
             return;
         }
 
         _instance = GetComponent<T>();
-        
-        if(keepAlive){
+
+        if (keepAlive) {
             DontDestroyOnLoad(gameObject);
         }
-        
-        if (_instance == null){
-            if(verbose)
+
+        if (_instance == null) {
+            if (verbose)
                 Debug.LogError("SingleAccessPoint<" + typeof(T).Name + "> Instance null in Awake");
             return;
         }
 
-        if(verbose)
+        if (verbose)
             Debug.Log("SingleAccessPoint instance found " + instance.GetType().Name);
 
     }

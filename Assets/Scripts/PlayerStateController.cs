@@ -113,6 +113,7 @@ public class PlayerStateController : MonoBehaviour {
             else {
                 photocamera.SetActive(false);
                 isCameraActive = false;
+                OnCameraOpen?.Invoke(this, EventArgs.Empty);
             }
         }
     }

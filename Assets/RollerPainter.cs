@@ -62,6 +62,7 @@ public class RollerPainter : MonoBehaviour {
                     if (lastPaintPos == null || mouseSingleClick) {
                         PaintManager.instance.paint(p, currentPos, radius, hardness, strength, paintColor);
                         lastPaintPos = currentPos;
+                        
                     }
                     else {
                         float dist = Vector3.Distance(lastPaintPos.Value, currentPos);
@@ -72,6 +73,7 @@ public class RollerPainter : MonoBehaviour {
                             Vector3 lerpPos = Vector3.Lerp(lastPaintPos.Value, currentPos, (float)i / steps);
                             PaintManager.instance.paint(p, lerpPos, radius, hardness, strength, paintColor);
                         }
+                       
                         lastPaintPos = currentPos;
                     }
                 }

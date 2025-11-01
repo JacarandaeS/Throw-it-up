@@ -1481,7 +1481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &68398256
 Transform:
   m_ObjectHideFlags: 0
@@ -11796,7 +11796,6 @@ MonoBehaviour:
   smoothSpeed: 5
   cameraSpeed: 0.3
   activeCans: {fileID: 68398255}
-  optionObject: {fileID: 0}
   photocamera: {fileID: 283132297}
 --- !u!4 &506090829
 Transform:
@@ -13959,7 +13958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &589750486
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25325,7 +25324,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.9528302, g: 0.8344041, b: 0.3460751, a: 1}
-  m_Intensity: 4
+  m_Intensity: 12
   m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -25388,7 +25387,7 @@ Transform:
   m_GameObject: {fileID: 1091993919}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 130.14034, y: -2.7119389, z: -3.813438}
+  m_LocalPosition: {x: 122.61, y: -2.7119389, z: -7.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26140,7 +26139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1125503649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53283,12 +53282,48 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 500c321ddea1fda468e2234769740196, type: 2}
     - target: {fileID: 6263588178278547827, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: size
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547827, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
       propertyPath: MaxSize
       value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 6263588178278547827, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
       propertyPath: MinSize
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547827, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: strength
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547827, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: paintColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547827, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: paintColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547827, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: paintColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547829, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: simulationSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547829, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547829, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: ShapeModule.arc.speed.scalar
+      value: 4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263588178278547829, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6263588179775410050, guid: 89e0ffbddd28f6240a4a0c9cef086a14, type: 3}
       propertyPath: m_Name

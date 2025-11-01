@@ -11,8 +11,7 @@ public class HandleChangeCamera : MonoBehaviour {
     [SerializeField] private GameObject secondCameraHolder;
     private bool isInsideTrigger = false;
     private bool isCam1Active = true;
-    private bool cameraholderActive = false;
-
+    
     void Start() {
         if (vcam1 != null && vcam2 != null) {
             vcam1.Priority = 10;

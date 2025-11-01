@@ -13,17 +13,17 @@ public class liveCanvasHandler : MonoBehaviour {
     }
 
     private void PlayerStateController_OnCameraOpen(object sender, System.EventArgs e) {
-        //Debug.Log("funciono y lo llamamos desde aca live camera handler");
-        //if(layerText.IsActive() && CapText.IsActive()) {
-        //    Debug.Log("funciono y lo llamamos desde aca live camera handler");
-        //    layerText.enabled = false;
-        //    CapText.enabled = false;
-        //}
-        //else {
-        //    Debug.Log("lo llamamos cuando esta apagado"); 
-        //    layerText.enabled = true;
-        //    CapText.enabled = true;
-        //}
+        Debug.Log("funciono y lo llamamos desde aca live camera handler");
+        if (layerText.IsActive() && CapText.IsActive()) {
+            Debug.Log("funciono y lo llamamos desde aca live camera handler");
+            layerText.enabled = false;
+            CapText.enabled = false;
+        }
+        else {
+            Debug.Log("lo llamamos cuando esta apagado");
+            layerText.enabled = true;
+            CapText.enabled = true;
+        }
     }
 
     void Update() {
